@@ -216,6 +216,18 @@ export default function RootLayout({
     >
       <head>
         <script
+          async
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-TRD25QPC"
+        />
+        <script
+          id="gtm-init"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());`,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
