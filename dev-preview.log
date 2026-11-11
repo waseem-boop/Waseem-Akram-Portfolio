@@ -1,0 +1,18 @@
+
+> waseem-portfolio@0.1.0 dev
+> next dev --port 3006
+
+▲ Next.js 16.4.1 (Turbopack)
+- Local:         http://localhost:3006
+- Network:       http://192.168.100.14:3006
+✓ Ready in 10.4s
+✓ Running next.config.ts took 762ms
+
+○ Compiling / ...
+ GET / 500 in 3.8s (next.js: 3.5s, application-code: 279ms)
+✓ Compiled in 723ms
+ GET / 200 in 2.1s (next.js: 1278ms, application-code: 830ms)
+ GET / 200 in 229ms (next.js: 24ms, application-code: 205ms)
+✓ Compiled in 142ms
+ GET / 200 in 385ms (next.js: 27ms, application-code: 358ms)
+✓ Compiled in 62ms

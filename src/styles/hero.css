@@ -1,0 +1,233 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100vh;
+  overflow: clip;
+  background: #002623;
+}
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  animation: portrait-enter 1s var(--entrance-ease) 150ms both;
+}
+.hero-backdrop {
+  object-fit: cover;
+  object-position: center;
+}
+.hero-portrait-layer {
+  position: absolute;
+  bottom: 0;
+  left: 55%;
+  width: min(135vw, calc((100vh - 64px) * 1.272727));
+  aspect-ratio: 14 / 11;
+  transform: translateX(-53.6%);
+}
+.hero-portrait {
+  z-index: 0;
+  object-fit: contain;
+  object-position: center;
+}
+.ripple-portrait {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+.ripple-portrait[data-ready="true"] {
+  opacity: 1;
+}
+.ripple-portrait canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.hero-content {
+  position: relative;
+  /* Keep the names in the photo's stacking context so difference can reach it. */
+  z-index: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 200px var(--page-gutter) 40px;
+  pointer-events: none;
+}
+.hero-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1440px;
+  overflow: clip;
+}
+.hero-descriptor {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.12;
+  text-transform: uppercase;
+}
+.hero-descriptor {
+  max-width: 240px;
+  animation: descriptor-enter 1s var(--entrance-ease) 150ms both;
+}
+.hero-bottom {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: min(1440px, max(280px, calc((100vh - 240px) * 2.4)));
+  overflow: clip;
+}
+.hero-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  overflow: clip;
+}
+.hero-first-name {
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: difference;
+  width: 50%;
+  flex: none;
+  font-size: 180px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  animation: text-enter-down 1s var(--entrance-ease) 150ms both;
+}
+.hero-roles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+}
+.hero-role {
+  position: relative;
+  z-index: 2;
+  white-space: pre;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.1;
+  text-transform: uppercase;
+  animation: text-enter-up 1s var(--entrance-ease) 150ms both;
+}
+.hero-last-name {
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: difference;
+  width: 100%;
+  font-size: 307px;
+  font-weight: 800;
+  line-height: 0.8;
+  text-transform: uppercase;
+  animation: text-enter-up 1s var(--entrance-ease) 150ms both;
+}
+.hero-word {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: currentColor;
+  overflow: visible;
+}
+.hero-word text { font-family: inherit; font-weight: inherit; }
+
+@keyframes portrait-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes descriptor-enter {
+  from {
+    opacity: 0.001;
+    transform: translateY(-70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes text-enter-down {
+  from {
+    opacity: 0.001;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes text-enter-up {
+  from {
+    opacity: 0.001;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 810px) and (max-width: 1199px) {
+  .hero-content {
+    padding-top: 180px;
+  }
+  .hero-heading-row {
+    justify-content: flex-start;
+    gap: 50px;
+  }
+}
+@media (max-width: 809px) {
+  .hero-content {
+    padding-top: 150px;
+  }
+  .hero-portrait-layer {
+    left: 56%;
+    width: min(215vw, calc((100vh - 80px) * 1.272727));
+    transform: translateX(-67%);
+  }
+  .hero-descriptor {
+    max-width: 240px;
+  }
+  .hero-heading-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .hero-first-name {
+    order: 1;
+  }
+  .hero-roles {
+    order: 0;
+  }
+}
+@media (max-height: 700px) {
+  .hero-content {
+    padding-top: 110px;
+    padding-bottom: 24px;
+    gap: 24px;
+  }
+  .hero-heading-row {
+    gap: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-background,
+  .hero-descriptor,
+  .hero-first-name,
+  .hero-role,
+  .hero-last-name {
+    animation: none;
+  }
+}

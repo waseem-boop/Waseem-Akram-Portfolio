@@ -1,0 +1,57 @@
+/* Continuous counter-rotating orbit, inspired by EmpireAI's integrations section. */
+.stack-orbit-section {
+  position: relative;
+  overflow: clip;
+  background: #080909;
+  color: #f1f2ec;
+  padding: 140px var(--page-gutter) 64px;
+}
+.stack-orbit-header { text-align: center; max-width: 1000px; margin: 0 auto; }
+.stack-orbit-eyebrow { font: 400 12px/1.5 var(--font-service-mono), monospace; letter-spacing: .08em; color: #92958f; margin: 0 0 30px; }
+.stack-orbit-header h2 {
+  font-family: var(--font-service-display), var(--font-inter-display), sans-serif;
+  font-size: clamp(76px, 10.5vw, 150px);
+  font-weight: 200;
+  font-stretch: condensed;
+  line-height: .95;
+  letter-spacing: -.065em;
+  margin: 0;
+}
+.stack-orbit-intro { color: #a7aaa5; font-size: 17px; line-height: 1.6; margin: 30px auto 0; max-width: 480px; }
+.stack-orbit-stage { position: relative; width: min(100%, 900px); aspect-ratio: 1; margin: 64px auto 36px; }
+.stack-orbit-picture { position: absolute; width: 72%; aspect-ratio: 1; left: 14%; top: 14%; border-radius: 50%; overflow: hidden; background: #080909; }
+.stack-orbit-photo { object-fit: cover; border-radius: 50%; will-change: transform; }
+.stack-orbit-ring { position: absolute; inset: 0; padding: 0; margin: 0; list-style: none; will-change: transform; }
+.stack-orbit-node { position: absolute; transform: translate(-50%, -50%); }
+.stack-orbit-badge {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 8px 13px; border: 1px solid #ffffff30; border-radius: 999px;
+  background: #0b0d0de8; color: #e5e9e1;
+  font: 400 11px/1 var(--font-service-mono), monospace;
+  text-transform: uppercase; white-space: nowrap;
+  will-change: transform;
+}
+.stack-orbit-badge img { width: 19px; height: 19px; object-fit: contain; filter: grayscale(1); border-radius: 3px; }
+.stack-orbit-bottom { max-width: 1000px; margin: 0 auto; padding-top: 24px; border-top: 1px solid #ffffff1c; display: flex; justify-content: space-between; gap: 24px; align-items: center; }
+.stack-orbit-bottom > span { font: 10px/1.5 var(--font-service-mono), monospace; letter-spacing: .05em; color: #777f76; }
+.stack-orbit-bottom a { font-size: 13px; color: #d8e9c3; padding: 10px 0; }
+.stack-orbit-bottom a span { margin-left: 16px; }
+@media (max-width: 900px) {
+  .stack-orbit-section { padding: 96px 32px 40px; }
+  .stack-orbit-badge { font-size: 9px; padding: 7px 9px; gap: 5px; }
+  .stack-orbit-badge img { width: 15px; height: 15px; }
+}
+@media (max-width: 600px) {
+  .stack-orbit-section { padding: 80px 16px 32px; }
+  .stack-orbit-header h2 { font-size: clamp(58px, 14vw, 84px); }
+  .stack-orbit-eyebrow { margin-bottom: 24px; font-size: 10px; }
+  .stack-orbit-intro { font-size: 14px; max-width: 290px; margin-top: 24px; }
+  .stack-orbit-stage { margin: 44px auto 32px; }
+  .stack-orbit-badge { width: 34px; height: 34px; padding: 6px; }
+  .stack-orbit-badge img { width: 21px; height: 21px; }
+  .stack-orbit-badge span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .stack-orbit-bottom { align-items: flex-start; flex-direction: column; gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stack-orbit-ring, .stack-orbit-badge, .stack-orbit-photo { will-change: auto; }
+}

@@ -1,0 +1,84 @@
+/* Shared palette across the portfolio's independently designed sections. */
+:root {
+  --brand-border: rgb(200 226 214 / 20%);
+  --brand-glow: rgb(32 131 111 / 28%);
+}
+.hero { background: var(--color-ink); }
+.hero-first-name, .hero-last-name { mix-blend-mode: normal; color: var(--color-paper); text-shadow: 0 2px 24px #051f2066; }
+.copy-tooltip { background: var(--color-paper); color: var(--color-ink); }
+.hire-button { background: var(--color-accent); color: var(--color-white); }
+.hire-button:hover { background: var(--color-base); }
+.rolling-link span + span { color: var(--color-sage); }
+
+.statement-section { background: var(--color-white); color: var(--color-ink); }
+.draft-guides { stroke: rgb(22 80 57 / 12%); }
+.draft-sketch { stroke: rgb(22 80 57 / 20%); }
+.draft-construct { stroke: rgb(22 80 57 / 13%); }
+.draft-outline { stroke: rgb(22 80 57 / 30%); }
+.draft-handles, .draft-cross { stroke: rgb(22 80 57 / 22%); }
+.statement-draft[data-weight="fill"] .draft-outline { stroke: rgb(22 80 57 / 20%); }
+.draft-nodes { stroke: rgb(22 80 57 / 42%); }
+.statement-draft .draft-ink path { stroke: var(--color-base); }
+
+.selected-work { background: var(--color-surface); color: var(--color-paper); }
+.work-header p, .work-tag { color: var(--color-sage); }
+.work-card-title, .work-number { color: var(--color-white); }
+.work-number-circle { background: rgb(32 131 111 / 65%); }
+.work-card:focus-visible { outline-color: var(--color-paper); }
+
+.services-showcase, .showcase-marquee { background: #000000; color: var(--color-paper); }
+.showcase-introduction { color: var(--color-sage); }
+.showcase-card { background: var(--color-surface); border-color: var(--brand-border); }
+.showcase-figure { filter: drop-shadow(0 0 38px var(--brand-glow)); }
+.showcase-marquee::after { background: linear-gradient(90deg, #000000, #00000000 35%, #00000000 65%, #000000); }
+
+.brand-vision { background: var(--color-paper); color: var(--color-ink); }
+.vision-card { background: var(--color-sage); box-shadow: 0 0 18px #051f2012; }
+.vision-card p { color: var(--color-surface); }
+.vision-card-number { background: var(--color-base); color: var(--color-paper); }
+.vision-circle { background: var(--color-paper); border-color: var(--color-base); }
+.vision-ring-inner { border-color: rgb(22 80 57 / 40%); }
+.vision-ring-outer { border-color: rgb(22 80 57 / 20%); }
+.vision-card:is(:hover,:focus-visible) { background: var(--color-base); outline-color: var(--color-accent); }
+.vision-card:is(:hover,:focus-visible) :is(h3,p) { color: var(--color-paper); }
+
+.process-wall { background: var(--color-ink); color: var(--color-paper); }
+.process-wall-description { color: var(--color-sage); }
+.process-wall-copy { color: var(--color-white); background: linear-gradient(90deg, #051f2099, #051f2022); }
+.tools-section { background: var(--color-surface); }
+.tools-title { color: var(--color-paper); }
+.tools-eyebrow { color: var(--color-sage); }
+.tool-tooltip { background: var(--color-ink); color: var(--color-paper); border: 1px solid var(--brand-border); }
+.tools-desc { color: var(--color-sage); }
+.tools-cta-button { background: var(--color-paper); color: var(--color-ink); box-shadow: 0 4px 20px var(--brand-glow); }
+.tools-cta-button:hover { background: var(--color-accent); color: var(--color-white); }
+
+.testimonials-section { background: var(--color-ink); color: var(--color-paper); }
+.testimonial-header > p, .testimonials-notice { color: var(--color-sage); }
+.testimonial-card { background: var(--color-white); color: var(--color-ink); }
+.testimonial-role { color: var(--color-base); }
+
+.contact-cta { background: var(--color-surface); color: var(--color-paper); }
+.contact-cta-corner { color: var(--color-accent); }
+.contact-cta-glow { background: var(--brand-glow); }
+.contact-cta-card { background: transparent; }
+.contact-cta-badge { background: var(--color-ink); border-color: var(--color-accent); color: var(--color-paper); box-shadow: 0 0 20px var(--brand-glow); }
+.contact-cta-avatars > * { border-color: var(--color-ink); }
+.contact-cta-avatars > span { background: var(--color-accent); color: var(--color-white); }
+.contact-cta-card h2 em { color: var(--color-sage); }
+.contact-cta-card > p { color: var(--color-sage); opacity: 1; }
+.contact-cta-arrow-button { background: var(--color-ink); color: var(--color-paper); border-color: var(--brand-border); }
+.contact-cta-arrow-before { background: var(--color-ink); color: var(--color-paper); }
+.contact-cta-arrow-after { background: var(--color-paper); color: var(--color-ink); }
+.contact-cta-arrow-button:is(:hover,:focus-visible) { background: var(--color-paper); color: var(--color-ink); }
+.contact-cta-dot-button { background: var(--color-paper); border-color: var(--color-paper); color: var(--color-ink); }
+.contact-cta-dot-button i { background: var(--color-base); }
+.contact-cta-dot-button:is(:hover,:focus-visible) { color: var(--color-paper); }
+.contact-cta-dot-button::after { background: var(--color-paper); }
+
+@media (max-width: 991px) {
+  .brand-vision { background-image: none; }
+}
+@media (max-width: 809px) {
+  .site-header[data-open="true"] { background: var(--color-ink); }
+}

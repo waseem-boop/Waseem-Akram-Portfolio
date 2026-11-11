@@ -1,0 +1,293 @@
+.brand-vision {
+  position: relative;
+  height: 600vh;
+  padding: 208px 0;
+  background: #f8f7f3;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0;
+}
+.vision-accessible-heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.vision-sticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: clip;
+}
+.vision-scene {
+  position: relative;
+  width: 100%;
+}
+.vision-columns {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1522px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.vision-column {
+  display: flex;
+  flex-direction: column;
+  gap: 128px;
+  min-width: 0;
+}
+.vision-column-right {
+  gap: 144px;
+}
+.vision-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 520px;
+  padding: 45px 20px 50px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 0 18px #00000012;
+  transition: background-color 0.5s ease;
+}
+.vision-card[data-vision-card="03"] {
+  margin-left: 70px;
+}
+.vision-card[data-vision-card="02"] {
+  align-self: flex-end;
+}
+.vision-card-corner {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.vision-card-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  transition: opacity 0.5s ease;
+}
+.vision-card-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 152px;
+  height: 116.8px;
+  overflow: hidden;
+  border-radius: 10px;
+  clip-path: inset(0 0 100% 100% round 10px);
+  transition: clip-path 0.5s ease;
+}
+.vision-card-image img {
+  object-fit: cover;
+}
+.vision-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+  max-width: 346px;
+}
+.vision-card h3 {
+  max-width: 168px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+  transition: color 0.5s ease;
+}
+.vision-card p {
+  margin: 0;
+  color: #4d4d4d;
+  transition: color 0.5s ease;
+}
+.vision-circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  border: 1px dashed #000;
+  border-radius: 50%;
+  background: #fff;
+}
+.vision-ring {
+  position: absolute;
+  flex: none;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.vision-ring-inner {
+  width: 712px;
+  height: 712px;
+  border: 1px dashed #0006;
+}
+.vision-ring-outer {
+  width: 920px;
+  height: 920px;
+  border: 1px dashed #0003;
+}
+.vision-messages {
+  position: relative;
+  width: 360px;
+}
+.vision-message {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.33;
+  text-align: center;
+}
+.vision-message + .vision-message {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+.vision-card:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 6px;
+}
+.vision-card:focus-visible,
+.vision-card:hover {
+  background: #000;
+}
+.vision-card:focus-visible h3,
+.vision-card:focus-visible p,
+.vision-card:hover h3,
+.vision-card:hover p {
+  color: #fff;
+}
+.vision-card:focus-visible .vision-card-number,
+.vision-card:hover .vision-card-number {
+  opacity: 0;
+}
+.vision-card:focus-visible .vision-card-image,
+.vision-card:hover .vision-card-image {
+  clip-path: inset(0 round 10px);
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0, 0.164, 0, 0.995);
+}
+@media (min-width: 1280px) {
+  .vision-card {
+    padding-right: 52px;
+    padding-left: 52px;
+  }
+  .vision-column {
+    gap: 102.4px;
+  }
+}
+@media (min-width: 1440px) {
+  .vision-circle {
+    width: 484px;
+    height: 484px;
+  }
+  .vision-column {
+    gap: 128px;
+  }
+}
+@media (min-width: 1920px) {
+  .vision-column-left {
+    margin-left: 59px;
+  }
+  .vision-card[data-vision-card="04"] {
+    margin-right: 93px;
+  }
+}
+@media (max-width: 991px) {
+  .brand-vision {
+    height: auto;
+    padding: 80px 0;
+    background-image: url("/images/brand-vision/tablet-background.webp");
+    background-position: center;
+    background-size: cover;
+    font-size: 15px;
+    line-height: 1.625;
+  }
+  .vision-sticky {
+    position: static;
+    height: auto;
+  }
+  .vision-circle {
+    display: none;
+  }
+  .vision-columns {
+    position: static;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .vision-column {
+    flex: 1;
+    gap: 16px;
+  }
+  .vision-card {
+    max-width: none;
+    height: 100%;
+    padding: 16px;
+    border-radius: 10px;
+  }
+  .vision-card[data-vision-card="03"] {
+    margin-left: 0;
+  }
+  .vision-card-content {
+    gap: 16px;
+  }
+  .vision-card h3 {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .vision-card-corner {
+    display: none;
+  }
+}
+@media (max-width: 479px) {
+  .brand-vision {
+    background-image: none;
+  }
+  .vision-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(164px, 1fr));
+  }
+  .vision-card-content {
+    align-items: center;
+    gap: 9.6px;
+    max-width: none;
+    text-align: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-vision {
+    height: auto;
+    padding: 120px 0;
+  }
+  .vision-sticky {
+    position: relative;
+    height: auto;
+    min-height: 900px;
+  }
+  .vision-card,
+  .vision-card h3,
+  .vision-card p,
+  .vision-card-number,
+  .vision-card-image {
+    transition: none;
+  }
+}

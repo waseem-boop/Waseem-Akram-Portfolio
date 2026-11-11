@@ -1,0 +1,198 @@
+.statement-scroll {
+  position: relative;
+  height: calc(max(40rem, 100vh) + var(--statement-travel, 0px));
+  background: #fff;
+  overflow-anchor: none;
+}
+.statement-scroll > .statement-section { position: sticky; top: 0; }
+@media (max-width: 767px) {
+  .statement-scroll { height: calc(100svh + var(--statement-travel, 0px)); }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .statement-scroll { height: calc(100vh + var(--statement-travel, 0px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .statement-scroll { height: auto; }
+  .statement-scroll > .statement-section { position: relative; }
+}
+.statement-section {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: max(40rem, 100vh);
+  padding: 80px 40px;
+  overflow: hidden;
+  background: #f1f1f3;
+  color: #161d25;
+  scroll-margin-top: 0;
+}
+.statement-stack {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 100%;
+  max-width: 1253px;
+  perspective: 1600px;
+}
+.statement-text {
+  grid-area: 1 / 1;
+  margin: 0;
+  font-family: var(--font-statement), var(--font-inter-display), sans-serif;
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  text-wrap: balance;
+  transform-style: preserve-3d;
+  overflow-wrap: break-word;
+}
+.statement-text:not(:first-child) {
+  opacity: 0;
+}
+.statement-line {
+  backface-visibility: hidden;
+}
+.statement-draft {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+  opacity: 0;
+}
+.statement-draft[data-ready="true"] {
+  opacity: 1;
+}
+.statement-draft path,
+.statement-draft circle,
+.statement-draft rect {
+  fill: none;
+  stroke-width: 1.25px;
+  vector-effect: non-scaling-stroke;
+}
+.statement-draft defs rect {
+  stroke: none;
+}
+.statement-draft mask > rect {
+  fill: white;
+}
+.statement-draft mask g rect {
+  fill: black;
+}
+.statement-draft clipPath path {
+  fill: black;
+  stroke: none;
+}
+.draft-guides {
+  stroke: rgb(22 29 37 / 12%);
+}
+.draft-sketch {
+  stroke: rgb(22 29 37 / 20%);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.draft-construct {
+  stroke: rgb(22 29 37 / 13%);
+}
+.draft-outline {
+  stroke: rgb(22 29 37 / 30%);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.draft-handles {
+  stroke: rgb(22 29 37 / 22%);
+}
+.statement-draft[data-weight="fill"] .draft-outline {
+  stroke: rgb(22 29 37 / 20%);
+}
+.draft-nodes {
+  stroke: rgb(22 29 37 / 42%);
+}
+.statement-draft .draft-ink path {
+  fill: none;
+  stroke: #161d25;
+  vector-effect: none;
+}
+.draft-ink {
+  opacity: 0.055;
+}
+.draft-cross {
+  stroke: rgb(22 29 37 / 22%);
+}
+.statement-section[data-motion="reduced"] .statement-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  perspective: none;
+}
+.statement-section[data-motion="reduced"] .statement-text {
+  opacity: 1;
+}
+
+@media (max-width: 1279px) {
+  .statement-section {
+    padding: 40px;
+  }
+  .statement-text {
+    font-size: 64px;
+  }
+}
+@media (max-width: 1023px) {
+  .statement-text {
+    font-size: 48px;
+  }
+}
+@media (max-width: 767px) {
+  .statement-section {
+    min-height: 100svh;
+    padding: 40px 20px;
+  }
+  .statement-stack {
+    perspective: 800px;
+  }
+  .statement-text {
+    font-size: 32px;
+    text-align: left;
+  }
+}
+@media (max-width: 479px) {
+  .statement-text {
+    font-size: 24px;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .statement-section {
+    min-height: 100vh;
+    padding: 24px 40px;
+  }
+  .statement-text {
+    font-size: 28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .statement-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    perspective: none;
+  }
+  .statement-text:not(:first-child) {
+    opacity: 1;
+  }
+}
+
+.statement-period { color: #0b2d26; }
+.dot-passage { position: relative; height: 200vh; background: #0b2d26; z-index: 5; }
+.dot-scene { position: sticky; top: 0; height: 100vh; background: #fff; }
+.dot-scene[data-arrived="true"] { overflow: clip; }
+.dot-scene-svg {
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%; overflow: visible;
+  opacity: 0; pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) { .dot-passage { display: none; } }
