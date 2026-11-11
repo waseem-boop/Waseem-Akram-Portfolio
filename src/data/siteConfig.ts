@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Waseem Akram",
   description:
     "Waseem Akram, full-stack developer and SaaS architect. Building modern web applications, scalable software and thoughtful digital experiences.",
-  email: "info@wazemtech.com",
+  email: "info@waseemakram.dev",
   brand: { firstLine: "WASEEM", secondLine: "AKRAM" },
   portrait: "/images/without bg.png",
   heroBackground: "/images/bg without object.png",

@@ -1,10 +1,12 @@
+import { siteConfig } from "@/data/siteConfig";
+
 export const techStackData = {
   eyebrow: "TECH STACK / 05",
   title: "TECH STACK",
   description:
     "Core languages, frameworks, databases, and cloud tools I use to architect and ship scalable web apps and digital products.",
   ctaText: "Get in touch",
-  ctaHref: "mailto:info@wazemtech.com",
+  ctaHref: `mailto:${siteConfig.email}`,
   rows: [
     // Row 1: Frontend & Full-Stack Core (9 items)
     [
