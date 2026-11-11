@@ -90,11 +90,12 @@ const jsonLd = {
     {
       "@type": "ImageObject",
       "@id": `${SITE_URL}/#portrait-image`,
-      url: `${SITE_URL}/images/waseem-akram.png`,
-      contentUrl: `${SITE_URL}/images/waseem-akram.png`,
+      url: "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393004/waseem-akram/seo/waseem-akram.jpg",
+      contentUrl:
+        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393004/waseem-akram/seo/waseem-akram.jpg",
       width: 1200,
       height: 1200,
-      encodingFormat: "image/png",
+      encodingFormat: "image/jpeg",
       name: siteConfig.name,
       caption: `${siteConfig.name} — Full-stack Developer & SaaS Architect`,
     },

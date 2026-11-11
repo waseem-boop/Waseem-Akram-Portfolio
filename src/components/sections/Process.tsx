@@ -25,7 +25,7 @@ export default function Process() {
             const Icon = icons[index];
             return (
               <li className="process-wall-card" key={step.id} data-position={index + 1}>
-                <Image src={`/images/kreativedge/process-${step.image}.webp`} alt="" fill sizes="(max-width: 767px) 100vw, 300px" />
+                <Image src={step.imageUrl} alt="" fill sizes="(max-width: 767px) 100vw, 300px" />
                 <div className="process-wall-copy">
                   <Icon size={32} strokeWidth={1.5} aria-hidden="true" />
                   <h3>{step.title}</h3>

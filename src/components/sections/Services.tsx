@@ -44,7 +44,7 @@ export default function Services() {
               <div className="showcase-marquee-train" key={copy}>
                 {serviceShowcase.marquee.map((text) => (
                   <span key={text}>
-                    <Image src="/images/services/regensia/marquee-star.svg" alt="" width={24} height={24} />
+                    <Image src="https://res.cloudinary.com/eckkgw2a/image/upload/v1794393007/waseem-akram/services/marquee-star.svg" alt="" width={24} height={24} />
                     {text}
                   </span>
                 ))}

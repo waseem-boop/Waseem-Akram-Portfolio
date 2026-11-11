@@ -3,3 +3,70 @@ node_modules/
 out/
 *.tsbuildinfo
 .env*.local
+
+# Cloudinary-hosted active assets (migrated to eckkgw2a / waseem-akram/*)
+# Hero & SEO
+/public/images/without bg.png
+/public/images/bg without object.png
+/public/images/waseem-akram.png
+
+# Selected Work / Projects
+/public/images/kreativedge/work-vision.webp
+/public/images/kreativedge/work-neurobot.webp
+/public/images/kreativedge/work-voiceiq.webp
+/public/images/kreativedge/work-edusmart.webp
+
+# Services
+/public/images/services/regensia/web-sculpture.webp
+/public/images/services/regensia/saas-sculpture.webp
+/public/images/services/regensia/app-sculpture.webp
+/public/images/services/regensia/marquee-star.svg
+
+# Brand Vision
+/public/images/brand-vision/strategy.webp
+/public/images/brand-vision/experience.avif
+/public/images/brand-vision/software.avif
+/public/images/brand-vision/launch.avif
+/public/images/brand-vision/tablet-background.webp
+
+# Process
+/public/images/kreativedge/process-1.webp
+/public/images/kreativedge/process-2.webp
+/public/images/kreativedge/process-3.webp
+/public/images/kreativedge/process-4.webp
+/public/images/kreativedge/process-5.webp
+/public/images/kreativedge/process-6.webp
+/public/images/kreativedge/process-7.webp
+
+# Tech Stack
+/public/images/stack-orbit.webp
+/public/dock-icons/html5.png
+/public/dock-icons/css.png
+/public/dock-icons/js.png
+/public/dock-icons/typescript.png
+/public/dock-icons/react.png
+/public/dock-icons/nextjs.png
+/public/dock-icons/tailwindcss.png
+/public/dock-icons/reactnative.png
+/public/dock-icons/nodejs.png
+/public/dock-icons/nestjs.png
+/public/dock-icons/express.png
+/public/dock-icons/graphql.png
+/public/dock-icons/postgresql.png
+/public/dock-icons/mongodb.png
+/public/dock-icons/mysqli.png
+/public/dock-icons/firebase.png
+/public/dock-icons/supabase.png
+/public/dock-icons/docker.png
+
+# Testimonials
+/public/images/kreativedge/review-1.webp
+/public/images/kreativedge/review-2.webp
+/public/images/kreativedge/review-3.webp
+
+# Call To Action
+/public/images/cta/brand-corner.svg
+/public/images/cta/avatar-1.png
+/public/images/cta/avatar-2.png
+/public/images/cta/avatar-3.png
+

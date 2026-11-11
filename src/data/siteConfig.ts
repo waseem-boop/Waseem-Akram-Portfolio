@@ -4,8 +4,10 @@ export const siteConfig = {
     "Waseem Akram, full-stack developer and SaaS architect. Building modern web applications, scalable software and thoughtful digital experiences.",
   email: "info@waseemakram.dev",
   brand: { firstLine: "WASEEM", secondLine: "AKRAM" },
-  portrait: "/images/without bg.png",
-  heroBackground: "/images/bg without object.png",
+  portrait:
+    "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393004/waseem-akram/hero/portrait-cutout.webp",
+  heroBackground:
+    "https://res.cloudinary.com/eckkgw2a/image/upload/v1794392939/waseem-akram/hero/hero-bg.webp",
   hero: {
     firstName: "WASEEM",
     lastName: "AKRAM",

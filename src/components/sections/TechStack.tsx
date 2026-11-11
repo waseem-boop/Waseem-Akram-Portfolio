@@ -83,7 +83,7 @@ export default function TechStack() {
       </header>
       <div className="stack-orbit-stage">
         <div className="stack-orbit-picture" aria-hidden="true">
-          <Image className="stack-orbit-photo" src="/images/stack-orbit.webp" alt="" fill sizes="(max-width: 600px) 70vw, 720px" />
+          <Image className="stack-orbit-photo" src={techStackData.orbitImage} alt="" fill sizes="(max-width: 600px) 70vw, 720px" />
         </div>
         <ul className="stack-orbit-ring" aria-label="Technologies and frameworks">
           {tools.map((tool, index) => {
@@ -91,7 +91,7 @@ export default function TechStack() {
             return (
               <li className="stack-orbit-node" key={tool.id} style={{ left: (50 + Math.cos(angle) * 44) + "%", top: (50 + Math.sin(angle) * 44) + "%" }}>
                 <div className="stack-orbit-badge" title={tool.label}>
-                  <Image src={"/dock-icons/" + tool.id + ".png"} alt="" width={22} height={22} unoptimized />
+                  <Image src={tool.icon} alt="" width={22} height={22} unoptimized />
                   <span>{tool.label}</span>
                 </div>
               </li>

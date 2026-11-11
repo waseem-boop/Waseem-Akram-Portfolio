@@ -16,7 +16,8 @@ export const serviceShowcase = {
       title: "Websites",
       description:
         "Fast, responsive websites and e-commerce experiences. From custom interfaces to product pages and checkout, built around your brand.",
-      image: "/images/services/regensia/web-sculpture.webp",
+      image:
+        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393006/waseem-akram/services/web-sculpture.webp",
       imageWidth: 1050,
       imageHeight: 1530,
       subject: "Web Development and E-commerce inquiry",
@@ -26,7 +27,8 @@ export const serviceShowcase = {
       title: "SaaS platforms",
       description:
         "Custom dashboards, connected systems and scalable software. Thoughtful full-stack development to take your product from MVP to launch.",
-      image: "/images/services/regensia/saas-sculpture.webp",
+      image:
+        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393006/waseem-akram/services/saas-sculpture.webp",
       imageWidth: 691,
       imageHeight: 713,
       subject: "SaaS Platforms inquiry",
@@ -36,7 +38,8 @@ export const serviceShowcase = {
       title: "Mobile apps",
       description:
         "Intuitive mobile interfaces and cross-platform apps. Clear user journeys and considered interactions, built for iOS and Android.",
-      image: "/images/services/regensia/app-sculpture.webp",
+      image:
+        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393006/waseem-akram/services/app-sculpture.webp",
       imageWidth: 678,
       imageHeight: 666,
       subject: "Mobile Apps inquiry",

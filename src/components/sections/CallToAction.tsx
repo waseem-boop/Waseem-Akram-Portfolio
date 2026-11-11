@@ -88,6 +88,11 @@ export default function CallToAction() {
   }, []);
 
   const href = `mailto:${siteConfig.email}`;
+  const avatars = [
+    "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393016/waseem-akram/cta/avatar-1.png",
+    "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393016/waseem-akram/cta/avatar-2.png",
+    "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393016/waseem-akram/cta/avatar-3.png",
+  ];
   return (
     <section className="contact-cta" id="contact" ref={ref} aria-labelledby="contact-cta-heading">
       <div className="contact-cta-screen" style={{ backgroundImage: `url("${siteConfig.heroBackground}")` }}>
@@ -96,14 +101,14 @@ export default function CallToAction() {
           <div className="contact-cta-corners" aria-hidden="true">
             {[0, 1].map(row => <div className={`contact-cta-corner-pair contact-cta-pair-${row}`} key={row}>
               {[0, 1].map(column => <div className={`contact-cta-corner contact-cta-art-${row * 2 + column}`} key={column}>
-                <img src="/images/cta/brand-corner.svg" width="86" height="86" alt="" />
+                <img src="https://res.cloudinary.com/eckkgw2a/image/upload/v1794393016/waseem-akram/cta/brand-corner.svg" width="86" height="86" alt="" />
               </div>)}
             </div>)}
           </div>
           <div className="contact-cta-card">
             <div className="contact-cta-badge">
               <div className="contact-cta-avatars" aria-hidden="true">
-                {[1, 2, 3].map(index => <img key={index} src={`/images/cta/avatar-${index}.png`} alt="" width="28" height="28" />)}
+                {avatars.map((avatarSrc, index) => <img key={index} src={avatarSrc} alt="" width="28" height="28" />)}
                 <span>WA</span>
               </div>
               <span>Let’s work together</span>

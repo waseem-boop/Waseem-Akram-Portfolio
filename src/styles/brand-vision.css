@@ -216,7 +216,7 @@
   .brand-vision {
     height: auto;
     padding: 80px 0;
-    background-image: url("/images/brand-vision/tablet-background.webp");
+    background-image: url("https://res.cloudinary.com/eckkgw2a/image/upload/v1794393009/waseem-akram/brand-vision/tablet-background.webp");
     background-position: center;
     background-size: cover;
     font-size: 15px;

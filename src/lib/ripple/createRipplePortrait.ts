@@ -84,6 +84,7 @@ export function createRipplePortrait(
     },
   });
   const loader = new TextureLoader();
+  loader.setCrossOrigin("anonymous");
   const image = loader.load(
     siteConfig.portrait,
     () => {
