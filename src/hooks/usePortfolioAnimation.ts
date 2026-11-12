@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, type RefObject } from "react";
+import { useEffect, type RefObject } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { portfolio } from "@/data/portfolio";
@@ -11,6 +11,7 @@ import {
   type ProjectBox,
   type ReachSample,
 } from "@/lib/portfolioGeometry";
+import { scheduleScrollRefresh, whenFontsReady } from "@/lib/motionScheduler";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,11 +30,10 @@ function layoutBox(element: HTMLElement, parent: HTMLElement): ProjectBox {
 }
 
 export function usePortfolioAnimation(ref: RefObject<HTMLElement | null>) {
-  useLayoutEffect(() => {
+  useEffect(() => {
     const section = ref.current;
     if (!section) return;
     let disposed = false;
-    let frame = 0;
     const media = gsap.matchMedia();
     const initialize = () => {
       if (disposed) return;
@@ -56,6 +56,7 @@ export function usePortfolioAnimation(ref: RefObject<HTMLElement | null>) {
           let length = 0;
           let completionReach = 0;
           let samples: ReachSample[] = [];
+          let builtKey = "";
           const render = () => {
             path.style.strokeDasharray = `${drawing.drawn} ${length + 1}`;
             path.style.visibility = drawing.drawn > 0.5 ? "visible" : "hidden";
@@ -67,6 +68,9 @@ export function usePortfolioAnimation(ref: RefObject<HTMLElement | null>) {
               stage.clientHeight,
               section.getBoundingClientRect().bottom - stageBounds.top,
             );
+            const key = `${width}x${Math.round(height)}`;
+            if (key === builtKey && length > 0) return;
+            builtKey = key;
             completionReach = height - 0.34 * window.innerHeight;
             const stroke = Math.min(
               40,
@@ -142,11 +146,10 @@ export function usePortfolioAnimation(ref: RefObject<HTMLElement | null>) {
               return;
             previousWidth = section.clientWidth;
             previousHeight = section.clientHeight;
-            cancelAnimationFrame(frame);
-            frame = requestAnimationFrame(() => ScrollTrigger.refresh());
+            scheduleScrollRefresh();
           });
           observer.observe(section);
-          frame = requestAnimationFrame(() => ScrollTrigger.refresh());
+          scheduleScrollRefresh();
           return () => {
             follow.tween.kill();
             observer.disconnect();
@@ -155,10 +158,10 @@ export function usePortfolioAnimation(ref: RefObject<HTMLElement | null>) {
         },
       );
     };
-    void document.fonts.ready.then(initialize);
+    const cancelFonts = whenFontsReady(initialize);
     return () => {
       disposed = true;
-      cancelAnimationFrame(frame);
+      cancelFonts();
       media.revert();
     };
   }, [ref]);

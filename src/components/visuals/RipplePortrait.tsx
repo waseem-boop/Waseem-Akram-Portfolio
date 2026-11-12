@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { createRipplePortrait } from "@/lib/ripple/createRipplePortrait";
+
+type SeedEvent = {
+  type: "move" | "down";
+  clientX: number;
+  clientY: number;
+};
 
 export default function RipplePortrait() {
   const host = useRef<HTMLDivElement>(null);
@@ -12,23 +17,73 @@ export default function RipplePortrait() {
     if (!element || !hero) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     let dispose: (() => void) | undefined;
+    let loading = false;
+    let disposed = false;
+    let latestSeed: SeedEvent | undefined;
+
     const mount = () => {
-      dispose?.();
-      dispose = undefined;
+      if (loading || dispose || disposed || reduced.matches) return;
+      loading = true;
       element.dataset.ready = "false";
-      if (reduced.matches) return;
-      try {
-        dispose = createRipplePortrait(element, hero, (ready) => {
-          element.dataset.ready = String(ready);
+      void import("@/lib/ripple/createRipplePortrait")
+        .then(({ createRipplePortrait }) => {
+          loading = false;
+          detachInteractionListeners();
+          if (disposed || reduced.matches) return;
+          try {
+            dispose = createRipplePortrait(
+              element,
+              hero,
+              (ready) => {
+                element.dataset.ready = String(ready);
+              },
+              latestSeed,
+            );
+          } catch {
+            element.dataset.ready = "false";
+          }
+        })
+        .catch(() => {
+          loading = false;
+          detachInteractionListeners();
+          element.dataset.ready = "false";
         });
-      } catch {
+    };
+
+    const onEnterOrMove = (event: PointerEvent) => {
+      latestSeed = { type: "move", clientX: event.clientX, clientY: event.clientY };
+      if (!loading && !dispose) mount();
+    };
+    const onDown = (event: PointerEvent) => {
+      latestSeed = { type: "down", clientX: event.clientX, clientY: event.clientY };
+      if (!loading && !dispose) mount();
+    };
+    const onReducedChange = () => {
+      if (reduced.matches) {
+        dispose?.();
+        dispose = undefined;
         element.dataset.ready = "false";
       }
     };
-    mount();
-    reduced.addEventListener("change", mount);
+
+    const attachInteractionListeners = () => {
+      hero.addEventListener("pointerenter", onEnterOrMove, { passive: true });
+      hero.addEventListener("pointermove", onEnterOrMove, { passive: true });
+      hero.addEventListener("pointerdown", onDown, { passive: true });
+    };
+    const detachInteractionListeners = () => {
+      hero.removeEventListener("pointerenter", onEnterOrMove);
+      hero.removeEventListener("pointermove", onEnterOrMove);
+      hero.removeEventListener("pointerdown", onDown);
+    };
+
+    attachInteractionListeners();
+    reduced.addEventListener("change", onReducedChange);
+
     return () => {
-      reduced.removeEventListener("change", mount);
+      disposed = true;
+      detachInteractionListeners();
+      reduced.removeEventListener("change", onReducedChange);
       dispose?.();
     };
   }, []);

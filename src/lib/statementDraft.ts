@@ -3,6 +3,7 @@ import {
   formContours,
   strokePose,
   windowProgress,
+  type Contour,
   type DrawWindow,
   type Point,
   type StrokeTrack,
@@ -16,6 +17,10 @@ type Marker = {
   at: number;
   retract?: DrawWindow;
 };
+type PolylineSampler = {
+  total: number;
+  pointAt: (distance: number) => Point;
+};
 type MeasuredContour = {
   element: SVGPathElement;
   length: number;
@@ -24,6 +29,7 @@ type MeasuredContour = {
   top: number;
   bottom: number;
   shortSide: number;
+  pointAt: (distance: number) => Point;
 };
 const retract: DrawWindow = [0.87, 1];
 const ns = "http://www.w3.org/2000/svg";
@@ -106,13 +112,87 @@ function measureText(section: HTMLElement): Bounds[] {
   return result;
 }
 
-function measureContour(element: SVGPathElement): MeasuredContour {
-  const length = element.getTotalLength();
+function buildPolylineSampler(
+  contour: Contour,
+  project: (point: Point) => Point,
+): PolylineSampler {
+  const vertices: Point[] = [project(contour[0].start)];
+  for (const segment of contour) {
+    if (segment.kind === "line") {
+      const a = project(segment.start);
+      const b = project(segment.end);
+      const steps = 16;
+      for (let i = 1; i <= steps; i++) {
+        const t = i / steps;
+        vertices.push({
+          x: a.x + (b.x - a.x) * t,
+          y: a.y + (b.y - a.y) * t,
+        });
+      }
+    } else {
+      const p0 = project(segment.start);
+      const p1 = project(segment.control1);
+      const p2 = project(segment.control2);
+      const p3 = project(segment.end);
+      const steps = 64;
+      for (let i = 1; i <= steps; i++) {
+        const t = i / steps;
+        const u = 1 - t;
+        const uu = u * u;
+        const tt = t * t;
+        vertices.push({
+          x:
+            uu * u * p0.x +
+            3 * uu * t * p1.x +
+            3 * u * tt * p2.x +
+            tt * t * p3.x,
+          y:
+            uu * u * p0.y +
+            3 * uu * t * p1.y +
+            3 * u * tt * p2.y +
+            tt * t * p3.y,
+        });
+      }
+    }
+  }
+  const cumLen = new Float64Array(vertices.length);
+  for (let i = 1; i < vertices.length; i++) {
+    cumLen[i] =
+      cumLen[i - 1] +
+      Math.hypot(
+        vertices[i].x - vertices[i - 1].x,
+        vertices[i].y - vertices[i - 1].y,
+      );
+  }
+  const total = cumLen[cumLen.length - 1] || 1;
+  const pointAt = (distance: number): Point => {
+    const d = Math.max(0, Math.min(total, distance));
+    let lo = 0;
+    let hi = cumLen.length - 1;
+    while (lo + 1 < hi) {
+      const mid = (lo + hi) >> 1;
+      if (cumLen[mid] <= d) lo = mid;
+      else hi = mid;
+    }
+    const span = cumLen[hi] - cumLen[lo];
+    const frac = span > 0 ? (d - cumLen[lo]) / span : 0;
+    return {
+      x: vertices[lo].x + (vertices[hi].x - vertices[lo].x) * frac,
+      y: vertices[lo].y + (vertices[hi].y - vertices[lo].y) * frac,
+    };
+  };
+  return { total, pointAt };
+}
+
+function measureContour(
+  element: SVGPathElement,
+  sampler: PolylineSampler,
+): MeasuredContour {
+  const length = sampler.total;
   const count = Math.max(64, Math.min(240, Math.round(length / 4)));
-  const samples = Array.from({ length: count }, (_, index) => {
-    const { x, y } = element.getPointAtLength((index / count) * length);
-    return { x, y };
-  });
+  const samples = Array.from({ length: count }, (_, index) =>
+    sampler.pointAt((index / count) * length),
+  );
   let topIndex = 0;
   samples.forEach((point, index) => {
     const best = samples[topIndex];
@@ -122,19 +202,25 @@ function measureContour(element: SVGPathElement): MeasuredContour {
     )
       topIndex = index;
   });
-  const xs = samples.map((point) => point.x);
-  const ys = samples.map((point) => point.y);
+  let minX = Infinity,
+    maxX = -Infinity,
+    minY = Infinity,
+    maxY = -Infinity;
+  for (const point of samples) {
+    if (point.x < minX) minX = point.x;
+    if (point.x > maxX) maxX = point.x;
+    if (point.y < minY) minY = point.y;
+    if (point.y > maxY) maxY = point.y;
+  }
   return {
     element,
     length,
     samples,
     from: (topIndex / count) * length,
-    top: Math.min(...ys),
-    bottom: Math.max(...ys),
-    shortSide: Math.min(
-      Math.max(...xs) - Math.min(...xs),
-      Math.max(...ys) - Math.min(...ys),
-    ),
+    top: minY,
+    bottom: maxY,
+    shortSide: Math.min(maxX - minX, maxY - minY),
+    pointAt: sampler.pointAt,
   };
 }
 
@@ -152,17 +238,13 @@ function pencilPath(
   const steps = Math.max(24, Math.min(400, Math.round(contour.length / 5)));
   const wrap = (distance: number) =>
     ((distance % contour.length) + contour.length) % contour.length;
-  let path = "";
+  const parts: string[] = [];
   for (let index = 0; index <= steps; index++) {
     const progress = -0.02 + (0.97 * index) / steps;
     const distance = wrap(contour.from + progress * contour.length);
-    const point = contour.element.getPointAtLength(distance);
-    const next = contour.element.getPointAtLength(
-      Math.min(contour.length, distance + 1.5),
-    );
-    const previous = contour.element.getPointAtLength(
-      Math.max(0, distance - 1.5),
-    );
+    const point = contour.pointAt(distance);
+    const next = contour.pointAt(Math.min(contour.length, distance + 1.5));
+    const previous = contour.pointAt(Math.max(0, distance - 1.5));
     const dx = next.x - previous.x;
     const dy = next.y - previous.y;
     const tangent = Math.hypot(dx, dy) || 1;
@@ -170,9 +252,11 @@ function pencilPath(
       amplitude *
       (0.65 * Math.sin(2 * Math.PI * frequency1 * progress + phase1) +
         0.35 * Math.sin(2 * Math.PI * frequency2 * progress + phase2));
-    path += `${index ? "L" : "M"}${(point.x - (dy / tangent) * wobble).toFixed(1)} ${(point.y + (dx / tangent) * wobble).toFixed(1)}`;
+    parts.push(
+      `${index ? "L" : "M"}${(point.x - (dy / tangent) * wobble).toFixed(1)} ${(point.y + (dx / tangent) * wobble).toFixed(1)}`,
+    );
   }
-  return path;
+  return parts.join("");
 }
 
 export function createStatementDraft(section: HTMLElement) {
@@ -182,6 +266,8 @@ export function createStatementDraft(section: HTMLElement) {
   let markers: Marker[] = [];
   let progress = 0;
   let disposed = false;
+  let builtWidth = 0;
+  let builtHeight = 0;
   const id = svg.dataset.draftId ?? "statement-draft";
 
   function render(value: number) {
@@ -217,11 +303,21 @@ export function createStatementDraft(section: HTMLElement) {
     }
   }
 
-  function rebuild() {
+  function rebuild(force = false) {
     if (disposed || !svg) return;
     const width = section.clientWidth;
     const height = section.clientHeight;
     if (!width || !height) return;
+    if (
+      !force &&
+      width === builtWidth &&
+      height === builtHeight &&
+      svg.dataset.ready === "true"
+    )
+      return;
+    builtWidth = width;
+    builtHeight = height;
+
     const text = measureText(section);
     const avoid = text.map((box) => inflate(box, 12));
     const maxScale = Math.min((height * 0.7) / 96, (width * 0.86) / 96);
@@ -256,6 +352,9 @@ export function createStatementDraft(section: HTMLElement) {
       x: x + point.x * scale,
       y: y + point.y * scale,
     });
+    const samplers = formContours.map((contour) =>
+      buildPolylineSampler(contour, project),
+    );
     const paths = formContours.map((contour) => contourPath(contour, project));
     const filled = width >= 900 && height >= 400;
     svg.dataset.weight = filled ? "fill" : "line";
@@ -348,13 +447,14 @@ export function createStatementDraft(section: HTMLElement) {
       d: string,
       draw: DrawWindow,
       retractWindow: DrawWindow | undefined = retract,
+      knownLength?: number,
     ): SVGPathElement {
       const element = node("path", { d });
       group.append(element);
       strokes.push({
         element,
         kind: "open",
-        length: element.getTotalLength(),
+        length: knownLength ?? element.getTotalLength(),
         from: 0,
         draw,
         retract: retractWindow,
@@ -366,34 +466,48 @@ export function createStatementDraft(section: HTMLElement) {
         groups.guides,
         `M0 ${project({ x: 0, y: rule }).y}H${width}`,
         [0, 0.16],
+        retract,
+        width,
       );
     for (const bearing of [0, 96])
       addStroke(
         groups.guides,
         `M${project({ x: bearing, y: 0 }).x} 0V${height}`,
         [0.03, 0.2],
+        retract,
+        height,
       );
     const circleCenter = project({ x: 60, y: 42 });
     addStroke(
       groups.construct,
       `M0 ${project({ x: 0, y: 44 }).y}H${width}`,
       [0.14, 0.272],
+      retract,
+      width,
     );
     addStroke(
       groups.construct,
       `M${project({ x: 58, y: 0 }).x} 0V${height}`,
       [0.194, 0.326],
+      retract,
+      height,
     );
-    addStroke(groups.construct, paths[1], [0.248, 0.38]);
+    addStroke(
+      groups.construct,
+      paths[1],
+      [0.248, 0.38],
+      retract,
+      samplers[1].total,
+    );
     strokes.at(-1)!.kind = "loop";
     const cross = node("path", { d: "M-4 0H4M0 -4V4", class: "draft-cross" });
     groups.construct.append(cross);
     markers.push({ element: cross, point: circleCenter, at: 0.248, retract });
 
-    const contours = paths.map((d) => {
+    const contours = paths.map((d, index) => {
       const path = node("path", { d });
       groups.outline.append(path);
-      return measureContour(path);
+      return measureContour(path, samplers[index]);
     });
     const highest = Math.min(...contours.map((contour) => contour.top));
     const lowest = Math.max(...contours.map((contour) => contour.bottom));
@@ -477,10 +591,13 @@ export function createStatementDraft(section: HTMLElement) {
           const a = project(from);
           const b = project(to);
           const at = pointTiming(a, contour) + 0.02;
-          addStroke(groups.handles, `M${a.x} ${a.y}L${b.x} ${b.y}`, [
-            at,
-            at + 0.06,
-          ]);
+          addStroke(
+            groups.handles,
+            `M${a.x} ${a.y}L${b.x} ${b.y}`,
+            [at, at + 0.06],
+            retract,
+            Math.hypot(b.x - a.x, b.y - a.y),
+          );
           const marker = node("circle", { r: 2.5, cx: 0, cy: 0 });
           groups.handles.append(marker);
           markers.push({ element: marker, point: b, at: at + 0.048, retract });
@@ -507,6 +624,8 @@ export function createStatementDraft(section: HTMLElement) {
     rebuild,
     destroy() {
       disposed = true;
+      builtWidth = 0;
+      builtHeight = 0;
       strokes = [];
       markers = [];
       svg.replaceChildren();

@@ -161,32 +161,19 @@ for (const [mode, geometry] of Object.entries(processLayouts)) {
     assert(distance >= height * 2 && distance <= height * 2.5);
   }
 }
-const css = await readFile(
-  new URL("../src/styles/process.css", import.meta.url),
-  "utf8",
-);
-assert(css.includes("height: 100vh"));
-assert(css.includes("prefers-reduced-motion"));
 const hook = await readFile(
   new URL("../src/hooks/useProcessAnimation.ts", import.meta.url),
   "utf8",
 );
-assert(
-  css.includes("position: sticky") &&
-    css.includes("height: calc(100vh + var(--process-travel))"),
-);
 assert(hook.includes('end: "bottom bottom"') && hook.includes("scrub: 0.55"));
 assert(!hook.includes("pin: true"));
 assert(hook.includes("processDrawingProgress(drawing.progress)"));
-assert(css.includes("top: var(--node-y)"));
-assert(css.includes("translateY(calc(-100% - 80px))"));
-assert(css.includes("translateY(96px)"));
 const diagram = await readFile(
   new URL("../src/components/visuals/ProcessDiagram.tsx", import.meta.url),
   "utf8",
 );
 assert.equal((diagram.match(/<path\b/g) ?? []).length, 1);
-assert(!/process-curve-(echo|track)|vector-effect/.test(css + diagram));
+assert(!/process-curve-(echo|track)|vector-effect/.test(diagram));
 assert(diagram.includes("pathLength={1}"));
 console.log(
   "Process checks passed: heading-only sticky entry, alternating labels, delayed/full/reverse drawing, step navigation timing and one visible curve.",

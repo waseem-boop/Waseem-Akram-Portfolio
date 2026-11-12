@@ -12,6 +12,7 @@ const visionFont = localFont({
     { path: "../../../public/fonts/inter-tight-semibold.ttf", weight: "600" },
   ],
   display: "swap",
+  preload: false,
 });
 
 function VisionCard({ card }: { card: (typeof brandVision.cards)[number] }) {

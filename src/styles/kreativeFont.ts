@@ -6,4 +6,5 @@ export const kreativeFont = localFont({
     { path: "../../public/fonts/poppins-500.ttf", weight: "500", style: "normal" },
   ],
   display: "swap",
+  preload: false,
 });

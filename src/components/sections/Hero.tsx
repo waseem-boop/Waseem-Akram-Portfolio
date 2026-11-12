@@ -2,13 +2,8 @@
 
 import Navbar from "@/components/layout/Navbar";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { siteConfig } from "@/data/siteConfig";
-
-const RipplePortrait = dynamic(
-  () => import("@/components/visuals/RipplePortrait"),
-  { ssr: false },
-);
+import RipplePortrait from "@/components/visuals/RipplePortrait";
 
 export default function Hero({ repeat = false }: { repeat?: boolean }) {
 
@@ -20,7 +15,7 @@ export default function Hero({ repeat = false }: { repeat?: boolean }) {
           src={siteConfig.heroBackground}
           alt=""
           fill
-          preload
+          preload={!repeat}
           sizes="100vw"
           className="hero-backdrop"
         />
@@ -29,8 +24,8 @@ export default function Hero({ repeat = false }: { repeat?: boolean }) {
             src={siteConfig.portrait}
             alt=""
             fill
-            preload
-            sizes="(max-width: 809px) 215vw, 1400px"
+            preload={!repeat}
+            sizes="(max-width: 809px) 215vw, 1200px"
             className="hero-portrait"
           />
         </div>

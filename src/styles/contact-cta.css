@@ -87,7 +87,8 @@
 }
 
 /* Contact and the returning hero share one continuous background. */
-.contact-cta-screen { isolation: isolate; background-size: cover; background-position: center; background-color: var(--color-ink); }
+.contact-cta-screen { isolation: isolate; background-color: var(--color-ink); }
+.contact-cta-backdrop { object-fit: cover; object-position: center; z-index: -2; pointer-events: none; }
 .contact-hero-reveal {
   position: absolute;
   inset: 0;

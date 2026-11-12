@@ -1,10 +1,11 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { techStackData } from "@/data/techstack";
+import { afterHydrationTask } from "@/lib/motionScheduler";
 
 gsap.registerPlugin(ScrollTrigger);
 const tools = techStackData.rows.flat();
@@ -12,66 +13,75 @@ const tools = techStackData.rows.flat();
 export default function TechStack() {
   const section = useRef<HTMLElement>(null);
 
-  useLayoutEffect(() => {
-    const media = gsap.matchMedia();
-    media.add("(prefers-reduced-motion: no-preference)", () => {
-      const root = section.current;
-      if (!root) return;
-      const stage = root.querySelector<HTMLElement>(".stack-orbit-stage");
-      if (!stage) return;
-      const ring = root.querySelector(".stack-orbit-ring");
-      const photo = root.querySelector(".stack-orbit-photo");
-      const badges = root.querySelectorAll(".stack-orbit-badge");
-      gsap.set([ring, photo, ...badges], { rotation: 0 });
-      const turnRing = gsap.quickSetter(ring, "rotation", "deg");
-      const turnPhoto = gsap.quickSetter(photo, "rotation", "deg");
-      const turnBadges = gsap.quickSetter(badges, "rotation", "deg");
-      let elapsed = 0;
-      let scrollProgress = 0;
-      let visible = false;
-      let running = false;
-      const paint = () => {
-        // Automatic motion and scrolling add together. Counter-rotate the
-        // labels so only their positions orbit, while the photo turns oppositely.
-        const angle = -(elapsed * 4 + scrollProgress * 80);
-        turnRing(angle);
-        turnBadges(-angle);
-        turnPhoto(elapsed * 3 + scrollProgress * 40);
-      };
-      const tick = (_time: number, deltaMs: number) => {
-        elapsed = (elapsed + Math.min(deltaMs, 64) / 1000) % 360;
-        paint();
-      };
-      const sync = () => {
-        const active = visible && !document.hidden;
-        if (active === running) return;
-        running = active;
-        if (active) { paint(); gsap.ticker.add(tick); }
-        else gsap.ticker.remove(tick);
-      };
-      ScrollTrigger.create({
-        trigger: root,
-        start: "top bottom",
-        end: "bottom top",
-        invalidateOnRefresh: true,
-        onUpdate: self => {
-          scrollProgress = self.progress;
-          if (running) paint();
-        },
-      });
-      const observer = new IntersectionObserver(([entry]) => {
-        visible = entry.isIntersecting;
-        sync();
-      });
-      observer.observe(stage);
-      document.addEventListener("visibilitychange", sync);
-      return () => {
-        observer.disconnect();
-        document.removeEventListener("visibilitychange", sync);
-        gsap.ticker.remove(tick);
-      };
-    }, section);
-    return () => media.revert();
+  useEffect(() => {
+    let disposed = false;
+    let media: gsap.MatchMedia | undefined;
+    const cancelTask = afterHydrationTask(() => {
+      if (disposed) return;
+      media = gsap.matchMedia();
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        const root = section.current;
+        if (!root) return;
+        const stage = root.querySelector<HTMLElement>(".stack-orbit-stage");
+        if (!stage) return;
+        const ring = root.querySelector(".stack-orbit-ring");
+        const photo = root.querySelector(".stack-orbit-photo");
+        const badges = root.querySelectorAll(".stack-orbit-badge");
+        gsap.set([ring, photo, ...badges], { rotation: 0 });
+        const turnRing = gsap.quickSetter(ring, "rotation", "deg");
+        const turnPhoto = gsap.quickSetter(photo, "rotation", "deg");
+        const turnBadges = gsap.quickSetter(badges, "rotation", "deg");
+        let elapsed = 0;
+        let scrollProgress = 0;
+        let visible = false;
+        let running = false;
+        const paint = () => {
+          // Automatic motion and scrolling add together. Counter-rotate the
+          // labels so only their positions orbit, while the photo turns oppositely.
+          const angle = -(elapsed * 4 + scrollProgress * 80);
+          turnRing(angle);
+          turnBadges(-angle);
+          turnPhoto(elapsed * 3 + scrollProgress * 40);
+        };
+        const tick = (_time: number, deltaMs: number) => {
+          elapsed = (elapsed + Math.min(deltaMs, 64) / 1000) % 360;
+          paint();
+        };
+        const sync = () => {
+          const active = visible && !document.hidden;
+          if (active === running) return;
+          running = active;
+          if (active) { paint(); gsap.ticker.add(tick); }
+          else gsap.ticker.remove(tick);
+        };
+        ScrollTrigger.create({
+          trigger: root,
+          start: "top bottom",
+          end: "bottom top",
+          invalidateOnRefresh: true,
+          onUpdate: self => {
+            scrollProgress = self.progress;
+            if (running) paint();
+          },
+        });
+        const observer = new IntersectionObserver(([entry]) => {
+          visible = entry.isIntersecting;
+          sync();
+        });
+        observer.observe(stage);
+        document.addEventListener("visibilitychange", sync);
+        return () => {
+          observer.disconnect();
+          document.removeEventListener("visibilitychange", sync);
+          gsap.ticker.remove(tick);
+        };
+      }, section);
+    });
+    return () => {
+      disposed = true;
+      cancelTask();
+      media?.revert();
+    };
   }, []);
 
   return (

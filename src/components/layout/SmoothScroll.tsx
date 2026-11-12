@@ -1,17 +1,19 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { afterHydrationTask } from "@/lib/motionScheduler";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll() {
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
+  useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let cleanup: (() => void) | undefined;
+    let cancelTask = () => {};
+    let disposed = false;
 
     const setup = () => {
       cleanup?.();
@@ -67,10 +69,19 @@ export default function SmoothScroll() {
       };
     };
 
-    setup();
-    motion.addEventListener("change", setup);
+    const scheduleSetup = () => {
+      cancelTask();
+      cancelTask = afterHydrationTask(() => {
+        if (!disposed) setup();
+      });
+    };
+
+    scheduleSetup();
+    motion.addEventListener("change", scheduleSetup);
     return () => {
-      motion.removeEventListener("change", setup);
+      disposed = true;
+      cancelTask();
+      motion.removeEventListener("change", scheduleSetup);
       cleanup?.();
     };
   }, []);

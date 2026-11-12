@@ -1,8 +1,9 @@
 "use client";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteConfig } from "@/data/siteConfig";
+import { afterHydrationTask } from "@/lib/motionScheduler";
 gsap.registerPlugin(ScrollTrigger);
 const groups = [
   { title: "Quick Links", links: [["About Me", "#about"], ["Services", "#services"], ["Projects", "#projects"], ["Tech Stack", "#stack"], ["Contact Me", "#contact"]] },
@@ -11,12 +12,21 @@ const groups = [
 ];
 export default function Footer() {
   const ref = useRef<HTMLElement>(null);
-  useLayoutEffect(() => {
-    const media = gsap.matchMedia();
-    media.add("(prefers-reduced-motion: no-preference)", () => {
-      gsap.from(".diroz-footer-reveal", { opacity: 0, duration: 1, stagger: 0.12, ease: "power1.out", scrollTrigger: { trigger: ref.current, start: "top 90%", once: true } });
-    }, ref);
-    return () => media.revert();
+  useEffect(() => {
+    let disposed = false;
+    let media: gsap.MatchMedia | undefined;
+    const cancelTask = afterHydrationTask(() => {
+      if (disposed) return;
+      media = gsap.matchMedia();
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from(".diroz-footer-reveal", { opacity: 0, duration: 1, stagger: 0.12, ease: "power1.out", scrollTrigger: { trigger: ref.current, start: "top 90%", once: true } });
+      }, ref);
+    });
+    return () => {
+      disposed = true;
+      cancelTask();
+      media?.revert();
+    };
   }, []);
   return (
     <footer className="diroz-footer" ref={ref} aria-label="Site footer">

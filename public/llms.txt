@@ -1,0 +1,59 @@
+# Waseem Akram — Full-stack Developer & SaaS Architect
+
+> Waseem Akram is a Full-Stack Developer and SaaS Architect specializing in modern web applications, scalable software architectures, and thoughtful digital experiences. He designs, architects, and builds fast, production-grade digital products from initial concept to launch.
+
+- Website: https://www.waseemakram.dev/
+- Contact: info@waseemakram.dev
+- Full Document: https://www.waseemakram.dev/full-llms.txt
+- Alternate Link: https://www.waseemakram.dev/llms-full.txt
+- GitHub: https://github.com/waseemakram-dev
+- LinkedIn: https://www.linkedin.com/in/waseemakramdev
+- Twitter / X: https://x.com/iamwaseemdev
+- Wikidata: https://www.wikidata.org/wiki/Q141748945
+- Hashnode: https://hashnode.com/@waseemakramdev
+- DEV Community: https://dev.to/waseemakramdev
+- Medium: https://medium.com/@waseemakramdev
+- Product Hunt: https://www.producthunt.com/@waseemakramdev
+- Clutch: https://clutch.co/profile/waseem-akram
+- Gravatar: https://waseemakram.online/
+- Behance: https://www.behance.net/iamwaseemdev
+- Dribbble: https://dribbble.com/waseemakramdev
+- TikTok: https://www.tiktok.com/@iamwaseemdev
+
+## Core Specializations
+
+- [Web & E-Commerce Development](https://www.waseemakram.dev/#services): High-performance websites, custom web apps, and modern e-commerce storefronts built with React, Next.js, and Tailwind CSS.
+- [SaaS Platform Architecture](https://www.waseemakram.dev/#services): Scalable SaaS systems, microservices, multi-tenant databases, real-time dashboards, and robust API development from MVP to enterprise scale.
+- [Mobile App Development](https://www.waseemakram.dev/#services): Cross-platform mobile applications for iOS and Android built with React Native and modern native interfaces.
+
+## Technology Stack
+
+- Frontend: TypeScript, JavaScript (ESNext), React, Next.js, HTML5, CSS3, Tailwind CSS, GSAP, Lenis.
+- Backend & APIs: Node.js, NestJS, Express, GraphQL, REST APIs.
+- Databases & Cloud: PostgreSQL, MongoDB, MySQL, Firebase, Supabase, Docker.
+
+## Engineering Process
+
+An end-to-end 8-step product delivery workflow:
+1. Discovery — Clear vision and requirement mapping
+2. Research — Target audience and technical feasibility
+3. Strategy — Architectural blueprint and roadmap
+4. Design — Wireframing, UX journeys, and interactive design
+5. Development — Clean, maintainable full-stack implementation
+6. Integration — Third-party APIs, databases, payment gateways, and cloud infrastructure
+7. Refinement — Testing, performance tuning, and accessibility optimization
+8. Launch — Production deployment, monitoring, and seamless handover
+
+## Portfolio Highlights
+
+- [AI Vision Process](https://www.waseemakram.dev/#projects): Advanced image & video recognition system.
+- [NeuroBot System](https://www.waseemakram.dev/#projects): Intelligent chatbot assistant architecture.
+- [VoiceIQ Technology](https://www.waseemakram.dev/#projects): Speech recognition & voice AI integration.
+- [EduSmart Process](https://www.waseemakram.dev/#projects): AI-enhanced e-learning platform.
+
+## Contact & Work Inquiries
+
+- Primary Email: info@waseemakram.dev
+- Availability: Open for select freelance contracts, SaaS consulting, and full-stack product engineering worldwide.
+- Work Inquiries: https://www.waseemakram.dev/#contact
+

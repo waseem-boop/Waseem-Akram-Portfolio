@@ -23,6 +23,7 @@ export function createRipplePortrait(
   host: HTMLDivElement,
   eventSurface: HTMLElement,
   onReady: (ready: boolean) => void,
+  initialEvent?: { type: "move" | "down"; clientX: number; clientY: number },
 ): (() => void) | undefined {
   const context = document
     .createElement("canvas")
@@ -96,8 +97,15 @@ export function createRipplePortrait(
       image.flipY = false;
       portraitLoaded = true;
       loaded = portraitLoaded && backgroundLoaded;
-      resize();
-      wake();
+      if (loaded) {
+        resize();
+        if (initialEvent) {
+          if (initialEvent.type === "down") down(initialEvent as PointerEvent);
+          else move(initialEvent as PointerEvent);
+        } else {
+          wake(false);
+        }
+      }
     },
     undefined,
     () => onReady(false),
@@ -114,8 +122,15 @@ export function createRipplePortrait(
       backgroundSize.set(background.image.width, background.image.height);
       backgroundLoaded = true;
       loaded = portraitLoaded && backgroundLoaded;
-      resize();
-      wake();
+      if (loaded) {
+        resize();
+        if (initialEvent) {
+          if (initialEvent.type === "down") down(initialEvent as PointerEvent);
+          else move(initialEvent as PointerEvent);
+        } else {
+          wake(false);
+        }
+      }
     },
     undefined,
     () => onReady(false),
@@ -147,7 +162,7 @@ export function createRipplePortrait(
   let visible = true;
   let frame = 0;
   let lastTime = 0;
-  let lastInteraction = performance.now();
+  let lastInteraction = -Infinity;
   let pressed = 0;
   let hovering = 0;
   let ready = false;
@@ -191,8 +206,8 @@ export function createRipplePortrait(
     if (now - lastInteraction < 4500) frame = requestAnimationFrame(render);
   }
 
-  function wake() {
-    lastInteraction = performance.now();
+  function wake(animate = true) {
+    if (animate) lastInteraction = performance.now();
     if (!frame && !disposed && loaded && visible && !document.hidden) {
       lastTime = 0;
       frame = requestAnimationFrame(render);
@@ -226,7 +241,7 @@ export function createRipplePortrait(
       renderer.clear();
     }
     renderer.setRenderTarget(null);
-    wake();
+    wake(false);
   }
   function move(event: PointerEvent) {
     const rect = host.getBoundingClientRect();
@@ -260,7 +275,7 @@ export function createRipplePortrait(
     if (document.hidden && frame) {
       cancelAnimationFrame(frame);
       frame = 0;
-    } else wake();
+    } else wake(false);
   }
   function scroll() {
     if (frame) cancelAnimationFrame(frame);
@@ -287,7 +302,7 @@ export function createRipplePortrait(
     if (!visible && frame) {
       cancelAnimationFrame(frame);
       frame = 0;
-    } else wake();
+    } else wake(false);
   });
   intersection.observe(eventSurface);
   eventSurface.addEventListener("pointermove", move, { passive: true });

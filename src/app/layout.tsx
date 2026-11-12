@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import localFont from "next/font/local";
 import { siteConfig } from "@/data/siteConfig";
@@ -53,6 +53,7 @@ const syne = localFont({
   variable: "--font-statement",
   display: "swap",
   weight: "500",
+  preload: false,
 });
 
 const portfolioFont = localFont({
@@ -60,6 +61,7 @@ const portfolioFont = localFont({
   variable: "--font-portfolio",
   display: "swap",
   weight: "500",
+  preload: false,
 });
 
 const serviceDisplay = localFont({
@@ -67,6 +69,7 @@ const serviceDisplay = localFont({
   variable: "--font-service-display",
   display: "swap",
   weight: "100 900",
+  preload: false,
 });
 
 const serviceMono = localFont({
@@ -74,9 +77,13 @@ const serviceMono = localFont({
   variable: "--font-service-mono",
   display: "swap",
   weight: "400",
+  preload: false,
 });
 
 const SITE_URL = "https://www.waseemakram.dev";
+const PAGE_TITLE = `${siteConfig.name} | Full-stack Developer & SaaS Architect`;
+const OG_IMAGE_URL =
+  "https://res.cloudinary.com/eckkgw2a/image/upload/v1794463368/waseem-akram/seo/og-banner-waseem.jpg";
 
 const serviceTypeById: Record<string, string> = {
   websites: "Web & E-commerce Development",
@@ -100,6 +107,17 @@ const jsonLd = {
       caption: `${siteConfig.name} — Full-stack Developer & SaaS Architect`,
     },
     {
+      "@type": "ImageObject",
+      "@id": `${SITE_URL}/#og-image`,
+      url: OG_IMAGE_URL,
+      contentUrl: OG_IMAGE_URL,
+      width: 1200,
+      height: 630,
+      encodingFormat: "image/jpeg",
+      name: PAGE_TITLE,
+      caption: `${siteConfig.name} — Full-stack Developer & SaaS Architect`,
+    },
+    {
       "@type": "Person",
       "@id": `${SITE_URL}/#person`,
       name: siteConfig.name,
@@ -115,6 +133,12 @@ const jsonLd = {
         "https://www.linkedin.com/in/waseemakramdev",
         "https://github.com/waseemakram-dev",
         "https://x.com/iamwaseemdev",
+        "https://hashnode.com/@waseemakramdev",
+        "https://dev.to/waseemakramdev",
+        "https://medium.com/@waseemakramdev",
+        "https://www.producthunt.com/@waseemakramdev",
+        "https://clutch.co/profile/waseem-akram",
+        "https://waseemakram.online/",
         "https://www.behance.net/iamwaseemdev",
         "https://dribbble.com/waseemakramdev",
         "https://www.tiktok.com/@iamwaseemdev",
@@ -145,7 +169,7 @@ const jsonLd = {
       "@type": ["WebPage", "ProfilePage"],
       "@id": `${SITE_URL}/#webpage`,
       url: `${SITE_URL}/`,
-      name: `${siteConfig.name} | Full-stack Developer & SaaS Architect`,
+      name: PAGE_TITLE,
       description: siteConfig.description,
       inLanguage: "en",
       isPartOf: {
@@ -158,7 +182,7 @@ const jsonLd = {
         "@id": `${SITE_URL}/#person`,
       },
       primaryImageOfPage: {
-        "@id": `${SITE_URL}/#portrait-image`,
+        "@id": `${SITE_URL}/#og-image`,
       },
     },
     ...serviceShowcase.items.map((service) => ({
@@ -187,10 +211,62 @@ const jsonLd = {
   ],
 };
 
+export const viewport: Viewport = {
+  themeColor: "#051f20",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `${siteConfig.name} | Full-stack Developer & SaaS Architect`,
+  title: PAGE_TITLE,
   description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
+  authors: [{ name: siteConfig.name, url: `${SITE_URL}/` }],
+  creator: siteConfig.name,
+  keywords: [
+    "Waseem Akram",
+    "Full-stack Developer",
+    "SaaS Architect",
+    "Next.js Developer",
+    "Web Application Development",
+    "React Developer",
+    "TypeScript",
+    "Scalable Software Architecture",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: `${SITE_URL}/`,
+    siteName: siteConfig.name,
+    title: PAGE_TITLE,
+    description: siteConfig.description,
+    images: [
+      {
+        url: OG_IMAGE_URL,
+        secureUrl: OG_IMAGE_URL,
+        width: 1200,
+        height: 630,
+        alt: PAGE_TITLE,
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@iamwaseemdev",
+    creator: "@iamwaseemdev",
+    title: PAGE_TITLE,
+    description: siteConfig.description,
+    images: [
+      {
+        url: OG_IMAGE_URL,
+        alt: PAGE_TITLE,
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
   robots: {
     index: true,
     follow: true,
@@ -217,10 +293,6 @@ export default function RootLayout({
     >
       <head>
         <script
-          async
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-TRD25QPC"
-        />
-        <script
           id="gtm-init"
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
@@ -236,6 +308,11 @@ gtag('js', new Date());`,
         />
       </head>
       <body suppressHydrationWarning>
+        <Script
+          id="gtm-script"
+          strategy="lazyOnload"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-TRD25QPC"
+        />
         <Script id="start-at-hero" strategy="beforeInteractive">{
           `history.scrollRestoration = "manual";
           if (location.hash) history.replaceState(history.state, "", location.pathname + location.search);
