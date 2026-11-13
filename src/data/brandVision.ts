@@ -11,8 +11,7 @@ export const brandVision = {
       title: "Strategy built around your goals",
       description:
         "Every project starts with your audience, your ambitions and a clear direction for what comes next.",
-      image:
-        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393007/waseem-akram/brand-vision/strategy.webp",
+      image: "/images/brand-vision/strategy-illustration.webp",
     },
     {
       id: "experience",
@@ -20,8 +19,7 @@ export const brandVision = {
       title: "Websites designed for real people",
       description:
         "Thoughtful interfaces bring your brand to life with clear journeys and a seamless user experience.",
-      image:
-        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393007/waseem-akram/brand-vision/experience.avif",
+      image: "/images/brand-vision/experience-illustration.webp",
     },
     {
       id: "software",
@@ -29,8 +27,7 @@ export const brandVision = {
       title: "Software that grows with you",
       description:
         "Reliable web applications and SaaS products turn complex challenges into tools people love using.",
-      image:
-        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393007/waseem-akram/brand-vision/software.avif",
+      image: "/images/brand-vision/software-illustration.webp",
     },
     {
       id: "launch",
@@ -38,8 +35,7 @@ export const brandVision = {
       title: "A launch built to last",
       description:
         "Performance, careful implementation and a considered handover keep your next chapter moving forward.",
-      image:
-        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393007/waseem-akram/brand-vision/launch.avif",
+      image: "/images/brand-vision/launch-illustration.webp",
     },
   ],
 } as const;

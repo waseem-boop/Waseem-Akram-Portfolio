@@ -1,8 +1,8 @@
 .portfolio-button {
-  --button-bg: #20836F;
-  --button-fg: #fff;
-  --button-hover-bg: #fff;
-  --button-hover-fg: #20836F;
+  --button-bg: #20836f;
+  --button-fg: #ffffff;
+  --button-hover-bg: #ffffff;
+  --button-hover-fg: #20836f;
   isolation: isolate;
   position: relative;
   display: inline-flex;
@@ -15,7 +15,7 @@
   padding: 20px 40px;
   background: var(--button-bg);
   color: var(--button-fg);
-  font: 500 20px/1.1 var(--font-inter-display), sans-serif;
+  font: 500 20px/1.1 var(--font-be-vietnam-pro);
   letter-spacing: -.15px;
   text-decoration: none;
   white-space: nowrap;
@@ -23,10 +23,10 @@
 }
 
 .portfolio-button--secondary {
-  --button-bg: #fff;
+  --button-bg: #ffffff;
   --button-fg: var(--color-ink);
-  --button-hover-bg: #20836F;
-  --button-hover-fg: #fff;
+  --button-hover-bg: #20836f;
+  --button-hover-fg: #ffffff;
 }
 
 .portfolio-button-label {
@@ -66,9 +66,10 @@
   transform: translateY(0);
 }
 
-.portfolio-button--nav {
+.portfolio-button.navbar-hire {
+  font-family: var(--font-be-vietnam-pro);
   padding: 16px 28px;
-  font-size: 16px;
+  font-size: var(--home-be-vietnam-size);
 }
 
 .contact-cta-actions .portfolio-button {

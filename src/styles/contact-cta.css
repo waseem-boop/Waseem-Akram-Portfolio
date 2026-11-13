@@ -1,6 +1,4 @@
-@font-face { font-family: "CTA Inter"; src: url('/fonts/cta-inter-latin.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
-@font-face { font-family: "CTA Instrument Serif"; src: url('/fonts/cta-instrument-serif-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
-.contact-cta { position: relative; z-index: 10; width: 100%; overflow: hidden; user-select: none; background: #141414; color: #fff; font-family: "CTA Inter", Arial, sans-serif; letter-spacing: normal; }
+.contact-cta { position: relative; z-index: 10; width: 100%; overflow: hidden; user-select: none; background: #051f20; color: #ffffff; font-family: var(--font-be-vietnam-pro); letter-spacing: normal; }
 .contact-cta-screen { min-height: 100vh; padding: 96px 24px; display: flex; align-items: center; justify-content: center; }
 .contact-cta-container { position: relative; width: 100%; max-width: 1180px; margin: 0 auto; }
 .contact-cta-corners { position: absolute; inset: 0; z-index: 20; pointer-events: none; will-change: transform; }
@@ -10,40 +8,39 @@
 .contact-cta-corner-2 { top: -12px; right: -12px; }
 .contact-cta-corner-3 { bottom: -12px; left: -12px; }
 .contact-cta-corner-4 { bottom: -12px; right: -12px; }
-.contact-cta-card { position: relative; z-index: 10; width: 100%; border-radius: 32px; background: #141414; border: 1px solid #ffffff1a; padding: 80px; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 0 90px #20836f4d; overflow: hidden; will-change: transform; }
+.contact-cta-card { position: relative; z-index: 10; width: 100%; border-radius: 32px; background: #051f20; border: 1px solid #ffffff1a; padding: 80px; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 0 90px #20836f4d; overflow: hidden; will-change: transform; }
 .contact-cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 380px; background: #20836f59; filter: blur(140px); border-radius: 50%; pointer-events: none; }
-.contact-cta-badge { display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px; border-radius: 40px; background: #191919; border: 1px solid #20836f; box-shadow: 0 0 20px #20836f80; margin-bottom: 32px; color: #fef9ff; font-size: 14px; font-weight: 500; line-height: 20px; }
+.contact-cta-badge { display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px; border-radius: 40px; background: #051f20; border: 1px solid #20836f; box-shadow: 0 0 20px #20836f80; margin-bottom: 32px; color: #ffffff; font-size: 14px; font-weight: 500; line-height: 20px; }
 .contact-cta-avatars { display: flex; align-items: center; }
-.contact-cta-avatars > * { width: 28px; height: 28px; border-radius: 50%; border: 1.25px solid #191919; object-fit: cover; }
-.contact-cta-avatars > * + * { margin-left: -8px; }
-.contact-cta-avatars > span { display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; background: #20836f; font-size: 10px; font-weight: 700; box-shadow: 0 4px 6px #0003; }
-.contact-cta-card h2 { margin: 0 0 24px; max-width: 896px; font-size: 60px; font-weight: 600; line-height: 1.25; letter-spacing: -0.6px; }
-.contact-cta-card h2 em { font-family: "CTA Instrument Serif", Georgia, serif; font-size: 68px; font-weight: 400; color: #fef9ff; }
-.contact-cta-card > p { max-width: 576px; margin: 0 0 40px; font-size: 18px; line-height: 1.625; color: #fef9ff; opacity: .7; }
+.contact-cta-avatars > * { width: 28px; height: 28px; border-radius: 50%; border: 1.25px solid #051f20; object-fit: cover; }
+.contact-cta-avatars > span { display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; background: #20836f; font-size: 10px; font-weight: 700; box-shadow: 0 4px 6px #00000033; }
+.contact-cta-card h2 { margin: 0 0 24px; max-width: 896px; font-size: var(--section-heading-size); font-weight: 500; line-height: 1.14286; letter-spacing: -0.6px; }
+.contact-cta-card h2 em { font-family: var(--font-frunchy-sage); font-size: inherit; font-weight: 400; font-style: normal; color: #ffffff; }
+.contact-cta-card > p { max-width: 576px; margin: 0 0 40px; font-size: 18px; line-height: 1.625; color: #ffffff; opacity: .7; }
 .contact-cta-badge, .contact-cta-card h2, .contact-cta-card > p, .contact-cta-actions { position: relative; z-index: 10; }
 .contact-cta-actions { display: flex; align-items: center; justify-content: center; gap: 16px; }
-.contact-cta-actions a { display: inline-flex; align-items: center; justify-content: center; border-radius: 50px; overflow: hidden; font-weight: 600; letter-spacing: .375px; white-space: nowrap; box-shadow: 0 20px 25px -5px #0003; }
-.contact-cta-arrow-button { padding: 12px 24px; border: 1px solid #ffffff26; background: #141414; color: #fef9ff; font-size: 15px; line-height: 22.5px; transition: background .4s, color .4s; }
+.contact-cta-actions a { display: inline-flex; align-items: center; justify-content: center; border-radius: 50px; overflow: hidden; font-weight: 600; letter-spacing: .375px; white-space: nowrap; box-shadow: 0 20px 25px -5px #00000033; }
+.contact-cta-arrow-button { padding: 12px 24px; border: 1px solid #ffffff26; background: #051f20; color: #ffffff; font-size: 15px; line-height: 22.5px; transition: background .4s, color .4s; }
 .contact-cta-arrow { display: flex; align-items: center; justify-content: center; flex-shrink: 0; height: 28px; border-radius: 50%; overflow: hidden; transition: width .4s, opacity .4s, margin .4s, transform .4s; }
-.contact-cta-arrow-before { width: 0; opacity: 0; transform: translateX(-16px); background: #141414; color: #fef9ff; }
-.contact-cta-arrow-after { width: 28px; margin-left: 10px; background: #fff; color: #141414; }
-.contact-cta-arrow-button:is(:hover,:focus-visible) { background: #fef9ff; color: #141414; }
+.contact-cta-arrow-before { width: 0; opacity: 0; transform: translateX(-16px); background: #051f20; color: #ffffff; }
+.contact-cta-arrow-after { width: 28px; margin-left: 10px; background: #ffffff; color: #051f20; }
+.contact-cta-arrow-button:is(:hover,:focus-visible) { background: #ffffff; color: #051f20; }
 .contact-cta-arrow-button:is(:hover,:focus-visible) .contact-cta-arrow-before { width: 28px; opacity: 1; margin-right: 10px; transform: none; }
 .contact-cta-arrow-button:is(:hover,:focus-visible) .contact-cta-arrow-after { width: 0; opacity: 0; margin-left: 0; transform: translateX(16px); }
-.contact-cta-dot-button { position: relative; gap: 24px; padding: 12px 28px; border: 1px solid #fef9ff; background: #fef9ff; color: #141414; font-size: 16px; line-height: 24px; }
+.contact-cta-dot-button { position: relative; gap: 24px; padding: 12px 28px; border: 1px solid #ffffff; background: #ffffff; color: #051f20; font-size: 16px; line-height: 24px; }
 .contact-cta-dot-button > span { position: relative; z-index: 2; transition: color .3s; }
-.contact-cta-dot-button i { width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; background: #141414; transition: transform .5s; }
-.contact-cta-dot-button:is(:hover,:focus-visible) { color: #fef9ff; }
+.contact-cta-dot-button i { width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; background: #051f20; transition: transform .5s; }
+.contact-cta-dot-button:is(:hover,:focus-visible) { color: #ffffff; }
 .contact-cta-dot-button:is(:hover,:focus-visible) i { transform: scale(60); }
 .contact-cta-dot-button::after { content: ''; position: absolute; right: 29px; width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0; transform: scale(.5); transition: opacity .3s, transform .3s; }
 .contact-cta-dot-button:is(:hover,:focus-visible)::after { opacity: 1; transform: scale(1); }
-@media (max-width: 1023px) { .contact-cta-card { padding: 64px; } .contact-cta-card h2 { font-size: 48px; } .contact-cta-card h2 em { font-size: 48px; } }
-@media (max-width: 767px) { .contact-cta-screen { padding: 64px 24px; } .contact-cta-card { padding: 48px; } .contact-cta-card h2 { font-size: 36px; } .contact-cta-card > p { font-size: 16px; } .contact-cta-corner svg { width: 64px; height: 64px; } .contact-cta-dot-button { font-size: 15px; gap: 16px; } }
-@media (max-width: 639px) { .contact-cta-screen { padding: 64px 16px; } .contact-cta-card { padding: 24px; border-radius: 28px; } .contact-cta-corner svg { width: 48px; height: 48px; } .contact-cta-corner-1,.contact-cta-corner-2 { top: -8px; } .contact-cta-corner-3,.contact-cta-corner-4 { bottom: -8px; } .contact-cta-corner-1,.contact-cta-corner-3 { left: -8px; } .contact-cta-corner-2,.contact-cta-corner-4 { right: -8px; } .contact-cta-badge { gap: 10px; padding: 6px 14px; margin-bottom: 24px; font-size: 12px; line-height: 16px; } .contact-cta-avatars > * { width: 24px; height: 24px; } .contact-cta-avatars > span { font-size: 9px; } .contact-cta-card h2 { font-size: 24px; margin-bottom: 16px; } .contact-cta-card h2 em { font-size: 30px; } .contact-cta-card > p { font-size: 14px; margin-bottom: 32px; } .contact-cta-actions { flex-direction: column; width: 100%; } .contact-cta-glow { width: 320px; height: 250px; filter: blur(100px); } }
+@media (max-width: 1023px) { .contact-cta-card { padding: 64px; }   }
+@media (max-width: 767px) { .contact-cta-screen { padding: 64px 24px; } .contact-cta-card { padding: 48px; }  .contact-cta-card > p { font-size: 16px; } .contact-cta-corner svg { width: 64px; height: 64px; } .contact-cta-dot-button { font-size: 15px; gap: 16px; } }
+@media (max-width: 639px) { .contact-cta-screen { padding: 64px 16px; } .contact-cta-card { padding: 24px; border-radius: 28px; } .contact-cta-corner svg { width: 48px; height: 48px; } .contact-cta-corner-1,.contact-cta-corner-2 { top: -8px; } .contact-cta-corner-3,.contact-cta-corner-4 { bottom: -8px; } .contact-cta-corner-1,.contact-cta-corner-3 { left: -8px; } .contact-cta-corner-2,.contact-cta-corner-4 { right: -8px; } .contact-cta-badge { gap: 10px; padding: 6px 14px; margin-bottom: 24px; font-size: 12px; line-height: 16px; } .contact-cta-avatars > * { width: 24px; height: 24px; } .contact-cta-avatars > span { font-size: 9px; } .contact-cta-card h2 { margin-bottom: 16px; }  .contact-cta-card > p { font-size: 14px; margin-bottom: 32px; } .contact-cta-actions { flex-direction: column; width: 100%; } .contact-cta-glow { width: 320px; height: 250px; filter: blur(100px); } }
 @media (prefers-reduced-motion: reduce) { .contact-cta-actions *, .contact-cta-actions a { transition: none; } }
 
 /* Original Fundory stage: independent corner pairs inside a sticky container. */
-.contact-cta { overflow: visible; background: #141414; }
+.contact-cta { overflow: visible; background: #051f20; }
 .contact-cta-screen { position: sticky; top: 0; height: 100vh; min-height: 0; padding: 0 24px; align-items: flex-start; overflow: clip; }
 .contact-cta-container { margin-top: min(240px, 26vh); }
 .contact-cta-corners { inset: auto; left: 50%; top: 0; width: 100%; height: 504px; }
@@ -73,8 +70,6 @@
   .contact-cta-card { padding: 50px 20px; }
 }
 @media (max-width: 767px) {
-  .contact-cta-card h2 { font-size: clamp(28px, 7vw, 40px); line-height: 1.2; }
-  .contact-cta-card h2 em { font-size: 1.12em; }
   .contact-cta-card > p { font-size: 16px; line-height: 1.6; }
   .contact-cta-corner, .contact-cta-corner img { width: 64px; height: 64px; }
   .contact-cta-corner-pair { height: 64px; }
@@ -82,13 +77,9 @@
 @media (min-width: 992px) and (max-height: 760px) {
   .contact-cta-container { margin-top: 32px; }
   .contact-cta-card { padding-top: 44px; padding-bottom: 44px; }
-  .contact-cta-card h2 { font-size: clamp(38px, 4vw, 54px); }
-  .contact-cta-card h2 em { font-size: 1.12em; }
 }
 
-/* Contact and the returning hero share one continuous background. */
-.contact-cta-screen { isolation: isolate; background-color: var(--color-ink); }
-.contact-cta-backdrop { object-fit: cover; object-position: center; z-index: -2; pointer-events: none; }
+.contact-cta-screen { isolation: isolate; background-color: var(--color-surface); }
 .contact-hero-reveal {
   position: absolute;
   inset: 0;
@@ -97,13 +88,6 @@
   pointer-events: none;
   will-change: transform;
 }
-.contact-hero-reveal .hero { background: transparent; }
-.contact-hero-reveal .hero-backdrop { visibility: hidden; }
-.contact-hero-reveal .hero-background,
-.contact-hero-reveal .hero-descriptor,
-.contact-hero-reveal .hero-first-name,
-.contact-hero-reveal .hero-last-name,
-.contact-hero-reveal .hero-role { animation: none !important; }
 .contact-loop-boundary { position: absolute; bottom: 0; height: 100vh; width: 1px; pointer-events: none; }
 .contact-restart { display: none; }
 @media (min-width: 992px) and (prefers-reduced-motion: no-preference) {
@@ -119,27 +103,17 @@
   .contact-restart { display: block; padding: 24px; text-align: center; }
 }
 
-/* Darken only the contact scene; release the shade as the hero arrives. */
-.contact-contrast {
-  position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(120deg, rgb(2 20 21 / 88%), rgb(2 20 21 / 70%));
-  pointer-events: none;
-}
 .contact-cta .contact-cta-card h2,
-.contact-cta .contact-cta-card h2 em { color: #fff9e9; text-shadow: 0 2px 16px #00191680; }
-.contact-cta .contact-cta-card > p { color: #f0f6f2; opacity: 1; }
-.contact-cta .contact-cta-corner img {
-  filter: brightness(0) saturate(100%) invert(94%) sepia(18%) saturate(605%) hue-rotate(340deg) brightness(110%);
-  opacity: 1;
-}
-.contact-cta .contact-cta-badge { border-color: #d9edb0; color: #fff9e9; background: #082527; }
+.contact-cta .contact-cta-card h2 em { color: var(--color-paper); }
+.contact-cta .contact-cta-card > p { color: var(--color-sage); opacity: 1; }
+.contact-cta .contact-cta-badge { border-color: var(--color-accent); color: var(--color-paper); background: var(--color-ink); font-family: var(--font-be-vietnam-pro); }
 .contact-cta-actions .portfolio-button {
-  --button-bg: #edf4c7; --button-fg: #082527;
-  --button-hover-bg: #fff; --button-hover-fg: #082527;
-  border: 1px solid #edf4c7;
+  --button-bg: var(--color-paper); --button-fg: var(--color-ink);
+  --button-hover-bg: var(--color-white); --button-hover-fg: var(--color-ink);
+  border: 1px solid var(--color-paper);
 }
 .contact-cta-actions .portfolio-button--secondary {
-  --button-bg: #082527; --button-fg: #fff9e9;
-  --button-hover-bg: #edf4c7; --button-hover-fg: #082527;
-  border-color: #d9edb0;
+  --button-bg: var(--color-ink); --button-fg: var(--color-paper);
+  --button-hover-bg: var(--color-paper); --button-hover-fg: var(--color-ink);
+  border-color: var(--color-paper);
 }

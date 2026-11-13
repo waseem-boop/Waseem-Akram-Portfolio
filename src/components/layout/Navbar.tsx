@@ -108,17 +108,32 @@ export default function Navbar() {
         </div>
         <div ref={panel} className="navbar-panel" id={panelId}>
           <nav className="navbar-links" aria-label="Main navigation">
-            {siteConfig.navigation.map((item) => (
-              <a
-                className="rolling-link"
-                href={item.href}
-                key={item.label}
-                onClick={() => setOpen(false)}
-              >
-                <span>{item.label}</span>
-                <span aria-hidden="true">{item.label}</span>
-              </a>
-            ))}
+            {siteConfig.navigation.map((item) => {
+              const isExternal = item.href.startsWith("http");
+              return isExternal ? (
+                <a
+                  className="rolling-link"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={item.label}
+                  onClick={() => setOpen(false)}
+                >
+                  <span>{item.label}</span>
+                  <span aria-hidden="true">{item.label}</span>
+                </a>
+              ) : (
+                <Link
+                  className="rolling-link"
+                  href={item.href}
+                  key={item.label}
+                  onClick={() => setOpen(false)}
+                >
+                  <span>{item.label}</span>
+                  <span aria-hidden="true">{item.label}</span>
+                </Link>
+              );
+            })}
           </nav>
           <div className="navbar-inquiry">
             <p>{siteConfig.inquiry}</p>

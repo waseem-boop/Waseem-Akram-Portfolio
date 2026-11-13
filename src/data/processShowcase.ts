@@ -8,7 +8,7 @@ export const processShowcase = {
       title: "Discovery",
       description: "Your vision, clearly defined.",
       image: 1,
-      imageUrl: "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393008/waseem-akram/process/process-1.webp",
+      imageUrl: "/images/process/discover-editorial.webp",
       icon: "discovery",
     },
     {
@@ -16,7 +16,7 @@ export const processShowcase = {
       title: "Research",
       description: "Understand what matters.",
       image: 2,
-      imageUrl: "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393009/waseem-akram/process/process-2.webp",
+      imageUrl: "/images/process/research-editorial.webp",
       icon: "research",
     },
     {
@@ -24,7 +24,7 @@ export const processShowcase = {
       title: "Strategy",
       description: "A direction worth following.",
       image: 3,
-      imageUrl: "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393009/waseem-akram/process/process-3.webp",
+      imageUrl: "/images/process/strategy-editorial.webp",
       icon: "strategy",
     },
     {
@@ -32,7 +32,7 @@ export const processShowcase = {
       title: "Design",
       description: "Ideas become experiences.",
       image: 4,
-      imageUrl: "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393009/waseem-akram/process/process-4.webp",
+      imageUrl: "/images/process/design-editorial.webp",
       icon: "design",
     },
     {
@@ -40,7 +40,7 @@ export const processShowcase = {
       title: "Development",
       description: "Built with care and clarity.",
       image: 5,
-      imageUrl: "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393010/waseem-akram/process/process-5.webp",
+      imageUrl: "/images/process/build-editorial.webp",
       icon: "development",
     },
     {
@@ -48,7 +48,7 @@ export const processShowcase = {
       title: "Integration",
       description: "Everything working together.",
       image: 6,
-      imageUrl: "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393010/waseem-akram/process/process-6.webp",
+      imageUrl: "/images/process/connect-editorial.webp",
       icon: "integration",
     },
     {
@@ -56,7 +56,7 @@ export const processShowcase = {
       title: "Refinement",
       description: "Test, polish and perfect.",
       image: 7,
-      imageUrl: "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393010/waseem-akram/process/process-7.webp",
+      imageUrl: "/images/process/refine-editorial.webp",
       icon: "refinement",
     },
     {
@@ -64,7 +64,7 @@ export const processShowcase = {
       title: "Launch",
       description: "Ready for your next chapter.",
       image: 1,
-      imageUrl: "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393008/waseem-akram/process/process-1.webp",
+      imageUrl: "/images/process/launch-editorial.webp",
       icon: "launch",
     },
   ],

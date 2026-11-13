@@ -44,12 +44,16 @@ An end-to-end 8-step product delivery workflow:
 7. Refinement — Testing, performance tuning, and accessibility optimization
 8. Launch — Production deployment, monitoring, and seamless handover
 
-## Portfolio Highlights
+## Portfolio Case Studies
 
-- [AI Vision Process](https://www.waseemakram.dev/#projects): Advanced image & video recognition system.
-- [NeuroBot System](https://www.waseemakram.dev/#projects): Intelligent chatbot assistant architecture.
-- [VoiceIQ Technology](https://www.waseemakram.dev/#projects): Speech recognition & voice AI integration.
-- [EduSmart Process](https://www.waseemakram.dev/#projects): AI-enhanced e-learning platform.
+- [All Projects Archive](https://www.waseemakram.dev/projects): Browse all 7 engineering & design case studies.
+- [Azad Concrete ERP](https://www.waseemakram.dev/projects/azad-concrete-erp): Full-stack manufacturing ERP, raw material BOM inventory, PDF gatepasses, and double-entry accounting ledger built with Next.js & PostgreSQL.
+- [Relayvo](https://www.waseemakram.dev/projects/relayvo): B2B SaaS operations platform connecting team handoffs, telemetry analytics, and motion-choreographed workflows.
+- [Monivo](https://www.waseemakram.dev/projects/monivo): Dark-mode collaborative SaaS workspace combining editorial typography with modular product views.
+- [Veyra Studio](https://www.waseemakram.dev/projects/veyra-studio): Kinetic typography & multi-route digital agency platform powered by Next.js, GSAP, and Lenis.
+- [Nortera Advisory](https://www.waseemakram.dev/projects/nortera-advisory): Financial & corporate strategy advisory platform built around institutional clarity.
+- [Avenor](https://www.waseemakram.dev/projects/avenor): Architectural studio flagship blending charcoal dark galleries, warm terracotta panels, and spatial studies.
+- [Orvane Studio](https://www.waseemakram.dev/projects/orvane-studio): Slate-and-ice spatial design portfolio showcasing residential & interior case studies.
 
 ## Contact & Work Inquiries
 

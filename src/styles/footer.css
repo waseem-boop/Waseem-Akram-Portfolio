@@ -1,12 +1,10 @@
-@font-face { font-family: "Footer Inter Tight"; src: url('/fonts/inter-tight-regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Footer Inter Tight"; src: url('/fonts/inter-tight-semibold.ttf') format('truetype'); font-weight: 500 700; font-display: swap; }
-.diroz-footer { position: relative; z-index: 11; background: #000; color: #fff; padding: 132px 0 68px; font-family: "Footer Inter Tight", sans-serif; letter-spacing: normal; }
+.diroz-footer { position: relative; z-index: 11; background: #000000; color: #ffffff; padding: 132px 0 68px; font-family: var(--font-be-vietnam-pro); letter-spacing: normal; }
 .diroz-footer-container { max-width: 1920px; margin: 0 auto; padding: 0 40px; }
 .diroz-footer-grid { display: grid; grid-template-columns: .8fr 1fr; gap: 132px; }
 .diroz-footer-brand { display: flex; flex-direction: column; justify-content: space-between; gap: 210px; min-width: 0; }
 .diroz-footer-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
 .diroz-footer-email { font-size: clamp(30px, 3.15vw, 48px); font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
-.diroz-footer-contact p { color: var(--color-sage); font-size: 20px; line-height: 30px; }
+.diroz-footer-contact p { color: var(--color-sage); font-family: var(--font-frunchy-sage); font-size: 20px; line-height: 30px; }
 .diroz-footer-wordmark { display: flex; align-items: baseline; gap: .015em; font-size: clamp(70px, 9.8vw, 180px); font-weight: 600; line-height: .95; letter-spacing: -.055em; white-space: nowrap; }
 .diroz-footer-wordmark span { font-size: .18em; letter-spacing: 0; }
 .diroz-footer-right { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
@@ -18,7 +16,7 @@
 .diroz-footer-links a:hover, .diroz-footer-email:hover { color: var(--color-accent); }
 .diroz-footer-copyright { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-top: 80px; color: var(--color-sage); font-size: 18px; line-height: 28px; }
 .diroz-footer-copyright p { margin: 0; }
-.diroz-footer-copyright a, .diroz-footer-copyright span { color: #fff; }
+.diroz-footer-copyright a, .diroz-footer-copyright span { color: #ffffff; }
 .diroz-footer-copyright > p:last-child { flex-shrink: 0; }
 @media (max-width: 1199px) {
  .diroz-footer-grid { gap: 60px; }

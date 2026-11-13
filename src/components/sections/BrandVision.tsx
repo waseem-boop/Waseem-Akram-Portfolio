@@ -2,18 +2,8 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import localFont from "next/font/local";
 import { brandVision } from "@/data/brandVision";
 import { useBrandVisionAnimation } from "@/hooks/useBrandVisionAnimation";
-
-const visionFont = localFont({
-  src: [
-    { path: "../../../public/fonts/inter-tight-regular.ttf", weight: "400" },
-    { path: "../../../public/fonts/inter-tight-semibold.ttf", weight: "600" },
-  ],
-  display: "swap",
-  preload: false,
-});
 
 function VisionCard({ card }: { card: (typeof brandVision.cards)[number] }) {
   return (
@@ -40,7 +30,7 @@ export default function BrandVision() {
     <section
       ref={ref}
       id="vision"
-      className={`brand-vision ${visionFont.className}`}
+      className="brand-vision"
       aria-labelledby="vision-heading"
     >
       <h2 className="vision-accessible-heading" id="vision-heading">

@@ -1,0 +1,980 @@
+/* =========================================
+   GENSTUDIO PROJECTS SCOPE & VARIABLES
+   ========================================= */
+.genstudio-projects-scope {
+  --bg: #051f20;
+  --fg: #daf1de;
+  --muted: #c8e2d6;
+  --muted-alt: #c8e2d6;
+  --pill-inactive-bg: #0b2d26;
+  --pill-hover-bg: #165039;
+  --border: #165039;
+  --accent: #20836f;
+  --card-fg: #ffffff;
+  --card-muted: #daf1de;
+  --hero-fallback: #0b2d26;
+  --font-serif: var(--font-frunchy-sage);
+  --ease-framer: cubic-bezier(0.44, 0, 0.56, 1);
+  --ease-spring: cubic-bezier(0.22, 1.24, 0.36, 1);
+  --ease-extended: cubic-bezier(0.94, 0, 0.56, 1);
+
+  position: relative;
+  width: 100%;
+  background-color: var(--bg);
+  color: var(--fg);
+  text-transform: uppercase;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+.genstudio-projects-scope *,
+.genstudio-projects-scope *::before,
+.genstudio-projects-scope *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   STICKY HERO SECTION
+   ========================================= */
+.genstudio-projects-scope .hero-section {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 675px;
+  overflow: clip;
+  background-color: #051f20;
+  color: #ffffff;
+  z-index: 1;
+}
+
+.genstudio-projects-scope .hero-bg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--hero-fallback);
+}
+
+.genstudio-projects-scope .hero-background-layer {
+  position: relative;
+  width: 100%;
+  height: 114%;
+  will-change: transform;
+  transition: transform 0.08s linear;
+}
+
+.genstudio-projects-scope .hero-image,
+.genstudio-projects-scope .projects-background-ripple canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.genstudio-projects-scope .projects-background-ripple {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.genstudio-projects-scope .projects-background-ripple[data-ready="true"] {
+  visibility: visible;
+}
+
+.genstudio-projects-scope .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #051f20;
+  opacity: 0.15;
+  transition: opacity 0.08s linear;
+}
+
+.genstudio-projects-scope .hero-desktop {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding: 120px clamp(24px, 5vw, 80px) 76px;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+}
+
+.genstudio-projects-scope .hero-artwork {
+  grid-area: 1 / 2;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.genstudio-projects-scope .hero-artwork > :is(img, canvas) {
+  flex: none;
+  width: 132%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+}
+
+.genstudio-projects-scope .hero-artwork > canvas {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.genstudio-projects-scope .hero-titles {
+  grid-area: 1 / 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  text-align: left;
+  overflow: visible;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.genstudio-projects-scope .hero-eyebrow {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3.2vw, 36px);
+  line-height: 1.1;
+  color: #ffffff;
+  overflow: visible;
+  letter-spacing: 0.04em;
+}
+
+.genstudio-projects-scope .hero-h1 {
+  font-size: var(--section-heading-size);
+  font-weight: 500;
+  line-height: 1.14286;
+  letter-spacing: -0.03em;
+  color: var(--color-paper);
+  max-width: 1000px;
+  margin: 0;
+}
+
+.genstudio-projects-scope .hero-bottom-bar {
+  grid-column: 1 / -1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 0 16px;
+}
+
+.genstudio-projects-scope .side-label {
+  flex: none;
+  width: 182px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  color: var(--card-muted);
+  transition: color 0.3s var(--ease-framer);
+}
+
+.genstudio-projects-scope .side-label:hover {
+  color: var(--accent);
+}
+
+.genstudio-projects-scope .side-label--right {
+  text-align: right;
+}
+
+.genstudio-projects-scope .hero-subtitle {
+  max-width: 360px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #daf1de;
+  letter-spacing: 0.04em;
+}
+
+/* Scroll indicator pill */
+.genstudio-projects-scope .hero-scroll-pill {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background-color: rgba(11, 45, 38, 0.72);
+  border: 1px solid #20836f;
+  color: #daf1de;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  z-index: 5;
+}
+
+.genstudio-projects-scope .hero-scroll-pill:hover {
+  background-color: #20836f;
+  color: #ffffff;
+}
+
+/* Split-Character Reveal Animation */
+.genstudio-projects-scope .split-reveal {
+  display: inline-block;
+  overflow: clip;
+  padding: 0.08em 0.14em;
+  margin: -0.08em -0.14em;
+  vertical-align: bottom;
+}
+
+.genstudio-projects-scope .split-char {
+  display: inline-block;
+  transform: translateY(115%);
+  opacity: 0;
+  transition:
+    transform 0.72s var(--ease-framer),
+    opacity 0.55s var(--ease-framer);
+}
+
+.genstudio-projects-scope .split-reveal.is-visible .split-char {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.genstudio-projects-scope .reveal-slide {
+  opacity: 0;
+  transition: transform 0.7s var(--ease-framer), opacity 0.6s var(--ease-framer);
+}
+
+.genstudio-projects-scope .reveal-slide[data-dir="left"] {
+  transform: translateX(-28px);
+}
+
+.genstudio-projects-scope .reveal-slide[data-dir="right"] {
+  transform: translateX(28px);
+}
+
+.genstudio-projects-scope .reveal-slide.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =========================================
+   MAIN SURFACE
+   ========================================= */
+.genstudio-projects-scope .main-surface {
+  position: relative;
+  z-index: 2;
+  background-color: var(--bg);
+  color: var(--fg);
+  padding-top: 180px;
+  transition: background-color 0.4s var(--ease-framer), color 0.4s var(--ease-framer);
+}
+
+/* Section Editorial Header */
+.genstudio-projects-scope .section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0 24px;
+}
+
+.genstudio-projects-scope .display-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.genstudio-projects-scope .section-h2 {
+  font-size: var(--section-heading-size);
+  font-weight: 500;
+  line-height: 1.14286;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--fg);
+  text-wrap: balance;
+}
+
+.genstudio-projects-scope .red-tag {
+  position: absolute;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 28.8px;
+  color: var(--accent);
+}
+
+.genstudio-projects-scope .red-tag--top-left {
+  top: 0;
+  left: 14%;
+}
+
+.genstudio-projects-scope .red-tag--bottom-right {
+  bottom: 0;
+  right: 12%;
+}
+
+.genstudio-projects-scope #cta .display-banner {
+  max-width: 1220px;
+}
+
+.genstudio-projects-scope #cta .red-tag--top-left {
+  left: 3%;
+  top: -6px;
+}
+
+.genstudio-projects-scope #cta .red-tag--bottom-right {
+  right: 3%;
+  bottom: -6px;
+}
+
+.genstudio-projects-scope .sub-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.genstudio-projects-scope .section-desc {
+  max-width: 440px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--muted-alt);
+  letter-spacing: 0.04em;
+}
+
+/* =========================================
+   CATEGORY FILTER BAR
+   ========================================= */
+.genstudio-projects-scope .filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 64px 24px 48px;
+}
+
+.genstudio-projects-scope .filter-pill {
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background-color: var(--pill-inactive-bg);
+  border: 1px solid rgba(32, 131, 111, 0.4);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition:
+    background-color 0.3s var(--ease-framer),
+    border-color 0.3s var(--ease-framer),
+    color 0.3s var(--ease-framer),
+    transform 0.25s var(--ease-spring);
+}
+
+.genstudio-projects-scope .filter-pill:hover {
+  background-color: var(--pill-hover-bg);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.genstudio-projects-scope .filter-pill.is-active {
+  background-color: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+/* =========================================
+   STAGGERED 2-COLUMN PROJECTS GRID
+   ========================================= */
+.genstudio-projects-scope .projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  padding: 0 24px;
+  box-sizing: border-box;
+  margin-bottom: 240px;
+}
+
+.genstudio-projects-scope .projects-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.genstudio-projects-scope .projects-col--right.is-staggered {
+  padding-top: 0;
+}
+
+.genstudio-projects-scope .project-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background-color: #051f20;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  opacity: 0;
+  clip-path: inset(12% 0 0 0);
+  transform: translate3d(0, 72px, 0);
+  transform-style: preserve-3d;
+  transition: opacity 0.72s var(--ease-framer), clip-path 0.9s var(--ease-extended), transform 0.65s var(--ease-spring);
+  transition-delay: var(--reveal-delay, 0ms);
+  cursor: pointer;
+}
+
+.genstudio-projects-scope .project-card.is-entered {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.genstudio-projects-scope .project-card.is-entered:hover,
+.genstudio-projects-scope .project-card.is-entered:focus-visible,
+.genstudio-projects-scope .project-card.is-hovered {
+  transform: perspective(1200px) translate3d(0, -8px, 0) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+}
+
+.genstudio-projects-scope .project-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.genstudio-projects-scope .project-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 50%;
+  background: #051f20;
+  transition: filter 0.55s var(--ease-framer);
+}
+
+.genstudio-projects-scope .card-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #051f20;
+  opacity: 0.28;
+  transition: opacity 0.4s var(--ease-framer);
+}
+
+.genstudio-projects-scope .project-card:hover .card-overlay,
+.genstudio-projects-scope .project-card:focus-visible .card-overlay {
+  opacity: 0.48;
+}
+
+.genstudio-projects-scope .project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(218, 241, 222, 0.22), transparent 34%);
+  mix-blend-mode: screen;
+  transition: opacity .35s var(--ease-framer);
+}
+
+.genstudio-projects-scope .project-card:hover::after,
+.genstudio-projects-scope .project-card:focus-visible::after {
+  opacity: 1;
+}
+
+.genstudio-projects-scope .card-content {
+  position: absolute;
+  inset: 24px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.genstudio-projects-scope .card-top-row,
+.genstudio-projects-scope .card-bottom-row {
+  width: 100%;
+  display: flex;
+}
+
+.genstudio-projects-scope .card-top-row {
+  justify-content: flex-end;
+}
+
+.genstudio-projects-scope .card-bottom-row {
+  justify-content: flex-start;
+}
+
+.genstudio-projects-scope .card-meta-client,
+.genstudio-projects-scope .card-meta-date {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+  color: var(--card-fg);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-framer), transform 0.4s var(--ease-framer);
+}
+
+.genstudio-projects-scope .card-meta-client {
+  transform: translateY(-6px);
+}
+
+.genstudio-projects-scope .card-meta-date {
+  transform: translateY(6px);
+}
+
+.genstudio-projects-scope .card-meta-client span,
+.genstudio-projects-scope .card-meta-date span {
+  color: var(--card-muted);
+  margin-right: 6px;
+}
+
+.genstudio-projects-scope .project-card:hover .card-meta-client,
+.genstudio-projects-scope .project-card:hover .card-meta-date,
+.genstudio-projects-scope .project-card:focus-visible .card-meta-client,
+.genstudio-projects-scope .project-card:focus-visible .card-meta-date {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.genstudio-projects-scope .card-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.genstudio-projects-scope .card-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background-color: #0b2d26;
+  border: 1px solid #20836f;
+  color: #daf1de;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s var(--ease-framer), transform 0.4s var(--ease-framer);
+}
+
+.genstudio-projects-scope .project-card:hover .card-badge,
+.genstudio-projects-scope .project-card:focus-visible .card-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.genstudio-projects-scope .card-title {
+  font-size: var(--card-heading-size);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--card-fg);
+  text-shadow: 0 2px 18px rgba(5, 31, 32, 0.72);
+  margin: 0;
+}
+
+/* =========================================
+   CTA & CONTINUOUS MARQUEE
+   ========================================= */
+.genstudio-projects-scope .cta-section {
+  position: relative;
+  display: block;
+  padding-bottom: 0;
+  background: var(--bg);
+}
+
+.genstudio-projects-scope .cta-sticky-stage {
+  position: relative;
+  padding-bottom: 48px;
+  background: var(--bg);
+}
+
+.genstudio-projects-scope .projects-cta-copy {
+  position: sticky;
+  top: clamp(140px, 24vh, 260px);
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+  padding-inline: 20px;
+  text-align: center;
+  text-transform: none;
+  background: var(--bg);
+}
+
+.genstudio-projects-scope .projects-cta-copy h2 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.genstudio-projects-scope .cta-scroll-spacer {
+  height: clamp(320px, 52vh, 520px);
+  background: var(--bg);
+}
+
+.genstudio-projects-scope .marquee-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.genstudio-projects-scope .marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeTicker 140s linear infinite;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.genstudio-projects-scope .marquee-viewport:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.genstudio-projects-scope .ticker-item {
+  position: relative;
+  flex: none;
+  width: 320px;
+  aspect-ratio: 3 / 2;
+  margin-inline-end: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--pill-inactive-bg);
+}
+
+.genstudio-projects-scope .ticker-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes marqueeTicker {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* =========================================
+   SINGLE PROJECT MODAL PREVIEW
+   ========================================= */
+.genstudio-projects-scope .project-modal[hidden] {
+  display: none;
+}
+
+.genstudio-projects-scope .project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity .26s var(--ease-framer);
+}
+
+.genstudio-projects-scope .project-modal.is-open {
+  opacity: 1;
+}
+
+.genstudio-projects-scope .project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 31, 32, 0.82);
+  backdrop-filter: blur(8px);
+}
+
+.genstudio-projects-scope .project-modal-sheet {
+  position: relative;
+  width: min(920px, 100%);
+  height: min(640px, 86vh);
+  background: #051f20;
+  color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 36px;
+  border-radius: 12px;
+  border: 1px solid #165039;
+  transform: translateY(28px) scale(.985);
+  transition: transform .42s var(--ease-spring);
+}
+
+.genstudio-projects-scope .project-modal.is-open .project-modal-sheet {
+  transform: translateY(0) scale(1);
+}
+
+.genstudio-projects-scope .project-modal-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.genstudio-projects-scope .project-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 31, 32, 0.22) 0%, rgba(5, 31, 32, 0.88) 100%);
+}
+
+.genstudio-projects-scope .project-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.genstudio-projects-scope .project-modal-close:hover {
+  background: #165039;
+  transform: scale(1.08);
+}
+
+.genstudio-projects-scope .project-modal-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.genstudio-projects-scope .modal-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--card-muted);
+}
+
+.genstudio-projects-scope .modal-title {
+  font-size: var(--section-heading-size);
+  font-weight: 500;
+  line-height: 1.14286;
+  color: var(--color-paper);
+  margin: 0;
+}
+
+.genstudio-projects-scope .modal-summary {
+  max-width: 540px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #daf1de;
+}
+
+.genstudio-projects-scope .modal-stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 520px;
+}
+
+.genstudio-projects-scope .modal-stack-pill {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background-color: #0b2d26;
+  border: 1px solid #20836f;
+  color: #daf1de;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.genstudio-projects-scope .modal-meta-row {
+  display: flex;
+  gap: 32px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--card-muted);
+}
+
+.genstudio-projects-scope .modal-case-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.genstudio-projects-scope .modal-case-cta:hover {
+  background-color: #165039;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   MOBILE RESPONSIVE (<= 809px)
+   ========================================= */
+@media (max-width: 809px) {
+  .genstudio-projects-scope .hide-mobile {
+    display: none !important;
+  }
+
+  .genstudio-projects-scope .hero-section {
+    height: 100svh;
+    min-height: 620px;
+  }
+
+  .genstudio-projects-scope .hero-desktop {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto auto;
+    gap: 16px;
+    padding: 92px 16px 68px;
+  }
+
+  .genstudio-projects-scope .hero-artwork {
+    grid-area: 1 / 1;
+  }
+
+  .genstudio-projects-scope .hero-artwork > :is(img, canvas) {
+    width: 100%;
+  }
+
+  .genstudio-projects-scope .hero-titles {
+    grid-area: 2 / 1;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .genstudio-projects-scope .hero-eyebrow {
+    font-size: 22px;
+    line-height: 24.2px;
+  }
+
+  .genstudio-projects-scope .hero-bottom-bar {
+    justify-content: center;
+  }
+
+  .genstudio-projects-scope .main-surface {
+    padding-top: 120px;
+  }
+
+  .genstudio-projects-scope .sub-row {
+    justify-content: center;
+  }
+
+  .genstudio-projects-scope .filter-bar {
+    padding: 40px 16px 24px;
+  }
+
+  .genstudio-projects-scope .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 16px;
+    margin-bottom: 120px;
+  }
+
+  .genstudio-projects-scope .projects-col {
+    gap: 16px;
+  }
+
+  .genstudio-projects-scope .projects-col--right.is-staggered {
+    padding-top: 0;
+  }
+
+  .genstudio-projects-scope .project-card {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+
+  .genstudio-projects-scope .cta-section {
+    padding-bottom: 100px;
+  }
+
+  .genstudio-projects-scope .cta-sticky-stage {
+    padding-bottom: 0;
+  }
+
+  .genstudio-projects-scope .projects-cta-copy {
+    position: relative;
+    top: auto;
+  }
+
+  .genstudio-projects-scope .cta-scroll-spacer {
+    display: none;
+  }
+
+  .genstudio-projects-scope .cta-section > .marquee-viewport {
+    position: relative;
+    top: auto;
+    margin-top: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .genstudio-projects-scope .marquee-viewport {
+    overflow-x: auto;
+  }
+  .genstudio-projects-scope .marquee-track {
+    animation: none;
+  }
+  .genstudio-projects-scope .ticker-item[aria-hidden="true"] {
+    display: none;
+  }
+  .genstudio-projects-scope .split-char,
+  .genstudio-projects-scope .reveal-slide,
+  .genstudio-projects-scope .project-card {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

@@ -1,12 +1,7 @@
-import { siteConfig } from "@/data/siteConfig";
-
 export const techStackData = {
-  eyebrow: "TECH STACK / 05",
   title: "TECH STACK",
   description:
     "Core languages, frameworks, databases, and cloud tools I use to architect and ship scalable web apps and digital products.",
-  ctaText: "Get in touch",
-  ctaHref: `mailto:${siteConfig.email}`,
   orbitImage:
     "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393010/waseem-akram/tech-stack/stack-orbit.webp",
   rows: [

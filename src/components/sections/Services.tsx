@@ -26,9 +26,9 @@ export default function Services() {
                 <Image
                   src={service.image}
                   alt=""
-                  width={service.imageWidth}
-                  height={service.imageHeight}
-                  sizes="(max-width: 991px) 150px, 450px"
+                  width={240}
+                  height={240}
+                  unoptimized
                 />
               </div>
               <div className="showcase-copy">

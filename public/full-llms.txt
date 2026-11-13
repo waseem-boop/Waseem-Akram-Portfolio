@@ -113,12 +113,16 @@ Every project follows an eight-stage methodology that balances strategic clarity
 
 ---
 
-## 6. Selected Project Archetypes
+## 6. Featured Portfolio Case Studies
 
-- AI Vision Process — Advanced image and video recognition system with responsive real-time inference displays.
-- NeuroBot System — Intelligent conversational AI assistant architecture designed for support automation and natural language understanding.
-- VoiceIQ Technology — High-accuracy speech recognition and voice AI pipeline integration for seamless hands-free productivity.
-- EduSmart Process — AI-enhanced e-learning platform providing personalized educational pathways and analytics.
+- [All Case Studies Archive](https://www.waseemakram.dev/projects) — Complete index of all 7 production builds.
+- [Azad Concrete ERP](https://www.waseemakram.dev/projects/azad-concrete-erp) — Custom factory ERP & double-entry accounting software built with Next.js 16, PostgreSQL, RBAC permissions, and pdf-lib gatepass generation.
+- [Relayvo](https://www.waseemakram.dev/projects/relayvo) — Multi-team SaaS operations platform connecting async handoffs, analytics views, and responsive GSAP/Lenis motion.
+- [Monivo](https://www.waseemakram.dev/projects/monivo) — Low-glare dark collaborative workspace SaaS with editorial typography and modular capability architecture.
+- [Veyra Studio](https://www.waseemakram.dev/projects/veyra-studio) — Multi-route creative agency flagship with kinetic display typography and scroll-synchronized interactions.
+- [Nortera Advisory](https://www.waseemakram.dev/projects/nortera-advisory) — Corporate & financial advisory web platform structured for executive trust and practice-area clarity.
+- [Avenor](https://www.waseemakram.dev/projects/avenor) — Architecture & spatial design showcase combining dark gallery views with warm terracotta narrative bands.
+- [Orvane Studio](https://www.waseemakram.dev/projects/orvane-studio) — Residential & interior spatial design portfolio crafted in slate and ice-blue tones.
 
 ---
 

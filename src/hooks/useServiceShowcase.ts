@@ -88,7 +88,7 @@ export function useServiceShowcase(ref: RefObject<HTMLElement | null>) {
           let metrics = measure();
 
           gsap.set(figures[0], { xPercent: -48, yPercent: -70 });
-          gsap.set(images[0], { scale: 2.2 });
+          gsap.set(images[0], { scale: 1.8 });
           gsap.set(headings[1], { y: 19 });
           gsap.set(headings[2], { y: 12 });
           gsap.set(descriptions[0], {
@@ -105,7 +105,7 @@ export function useServiceShowcase(ref: RefObject<HTMLElement | null>) {
           };
           ScrollTrigger.addEventListener("refreshInit", onRefreshInit);
 
-          // Original Regensia keyframes: travel 25-85; sculpture reveals 38/59/85.
+          // Keep the existing scroll timing and give the UI illustrations room beside the copy.
           const timeline = gsap.timeline({
             defaults: { ease: "none" },
             scrollTrigger: {
@@ -134,16 +134,16 @@ export function useServiceShowcase(ref: RefObject<HTMLElement | null>) {
               56,
             )
             .to(figures[1], { xPercent: -24, yPercent: -70, duration: 3 }, 56)
-            .to(images[1], { scale: 3, duration: 3 }, 56)
+            .to(images[1], { scale: 2.15, duration: 3 }, 56)
             .to(headings[1], { y: 0, duration: 3 }, 56)
-            .to(images[1], { scale: 2.5, duration: 3 }, 59)
+            .to(images[1], { scale: 1.85, duration: 3 }, 59)
             .to(headings[1], { y: 19, duration: 6 }, 62)
             .to(descriptions[1], { opacity: 0, duration: 4 }, 65)
             .to(descriptions[1], { height: 0, duration: 8 }, 62)
             .to(figures[1], { xPercent: 0, yPercent: 0, duration: 8 }, 62)
             .to(images[1], { scale: 1, duration: 8 }, 62)
             .to(figures[2], { xPercent: -32, yPercent: -75, duration: 4 }, 79)
-            .to(images[2], { scale: 2.2, duration: 4 }, 79)
+            .to(images[2], { scale: 1.8, duration: 4 }, 79)
             .to(
               descriptions[2],
               { height: () => metrics.openHeights[2], duration: 4 },

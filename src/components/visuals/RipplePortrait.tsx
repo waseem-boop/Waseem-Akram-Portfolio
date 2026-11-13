@@ -8,12 +8,12 @@ type SeedEvent = {
   clientY: number;
 };
 
-export default function RipplePortrait() {
+export default function RipplePortrait({ backgroundOnly = false }: { backgroundOnly?: boolean }) {
   const host = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const element = host.current;
-    const hero = element?.closest<HTMLElement>(".hero");
+    const hero = element?.closest<HTMLElement>(backgroundOnly ? ".hero-section" : ".hero");
     if (!element || !hero) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     let dispose: (() => void) | undefined;
@@ -38,6 +38,7 @@ export default function RipplePortrait() {
                 element.dataset.ready = String(ready);
               },
               latestSeed,
+              backgroundOnly,
             );
           } catch {
             element.dataset.ready = "false";
@@ -63,6 +64,8 @@ export default function RipplePortrait() {
         dispose?.();
         dispose = undefined;
         element.dataset.ready = "false";
+      } else {
+        attachInteractionListeners();
       }
     };
 
@@ -86,7 +89,7 @@ export default function RipplePortrait() {
       reduced.removeEventListener("change", onReducedChange);
       dispose?.();
     };
-  }, []);
+  }, [backgroundOnly]);
 
-  return <div ref={host} className="ripple-portrait" aria-hidden="true" />;
+  return <div ref={host} className={backgroundOnly ? "projects-background-ripple" : "ripple-portrait"} aria-hidden="true" />;
 }

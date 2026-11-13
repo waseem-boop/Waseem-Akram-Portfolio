@@ -24,19 +24,23 @@ export function useSelectedWork(ref: RefObject<HTMLElement | null>) {
         },
         (context) => {
           if (!context.conditions?.desktop || context.conditions.reduced) return;
-          // Keep document height fixed throughout a loop. Animate only the
-          // heading's transform; changing font-size here changes Lenis's modulus.
           const heading = section.querySelector<HTMLElement>(".work-header h2");
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: section, start: "top bottom", end: "bottom bottom",
-              scrub: true, invalidateOnRefresh: true,
-            },
-          })
-            .fromTo(heading,
-              { scale: 1, transformOrigin: "left center" },
-              { scale: context.conditions.large ? 70 / 195 : 1, duration: 16, ease: "power1.inOut" }, 20)
-            .to({}, { duration: 64 }, 36);
+          if (heading && context.conditions.large) {
+            // Keep layout height stable while the heading shrinks on scroll.
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "bottom bottom",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            })
+              .fromTo(heading,
+                { scale: 1, transformOrigin: "left center" },
+                { scale: 70 / 195, duration: 16, ease: "power1.inOut" }, 20)
+              .to({}, { duration: 64 }, 36);
+          }
           gsap.from(section.querySelector(".work-header p"), {
             y: 100, opacity: 0, duration: 1, delay: 0.1, ease: "power3.out",
             scrollTrigger: { trigger: section.querySelector(".work-header p"), start: "top 88%", once: true },

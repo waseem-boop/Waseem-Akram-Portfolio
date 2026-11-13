@@ -1,7 +1,7 @@
 .statement-scroll {
   position: relative;
   height: calc(max(40rem, 100vh) + var(--statement-travel, 0px));
-  background: #fff;
+  background: #ffffff;
   overflow-anchor: none;
 }
 .statement-scroll > .statement-section { position: sticky; top: 0; }
@@ -25,8 +25,8 @@
   min-height: max(40rem, 100vh);
   padding: 80px 40px;
   overflow: hidden;
-  background: #f1f1f3;
-  color: #161d25;
+  background: #ffffff;
+  color: #165039;
   scroll-margin-top: 0;
 }
 .statement-stack {
@@ -34,16 +34,16 @@
   z-index: 1;
   display: grid;
   width: 100%;
-  max-width: 1253px;
+  max-width: 1050px;
   perspective: 1600px;
 }
 .statement-text {
   grid-area: 1 / 1;
   margin: 0;
-  font-family: var(--font-statement), var(--font-inter-display), sans-serif;
-  font-size: 80px;
-  font-weight: 500;
-  line-height: 1;
+  font-family: var(--font-inter-display), Arial, sans-serif;
+  font-size: clamp(28px, 5vw, 80px);
+  font-weight: 600;
+  line-height: 1.05;
   text-align: center;
   text-wrap: balance;
   transform-style: preserve-3d;
@@ -89,40 +89,40 @@
   stroke: none;
 }
 .draft-guides {
-  stroke: rgb(22 29 37 / 12%);
+  stroke: rgb(22 80 57 / 12%);
 }
 .draft-sketch {
-  stroke: rgb(22 29 37 / 20%);
+  stroke: rgb(22 80 57 / 20%);
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .draft-construct {
-  stroke: rgb(22 29 37 / 13%);
+  stroke: rgb(22 80 57 / 13%);
 }
 .draft-outline {
-  stroke: rgb(22 29 37 / 30%);
+  stroke: rgb(22 80 57 / 30%);
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .draft-handles {
-  stroke: rgb(22 29 37 / 22%);
+  stroke: rgb(22 80 57 / 22%);
 }
 .statement-draft[data-weight="fill"] .draft-outline {
-  stroke: rgb(22 29 37 / 20%);
+  stroke: rgb(22 80 57 / 20%);
 }
 .draft-nodes {
-  stroke: rgb(22 29 37 / 42%);
+  stroke: rgb(22 80 57 / 42%);
 }
 .statement-draft .draft-ink path {
   fill: none;
-  stroke: #161d25;
+  stroke: #165039;
   vector-effect: none;
 }
 .draft-ink {
   opacity: 0.055;
 }
 .draft-cross {
-  stroke: rgb(22 29 37 / 22%);
+  stroke: rgb(22 80 57 / 22%);
 }
 .statement-section[data-motion="reduced"] .statement-stack {
   display: flex;
@@ -138,14 +138,6 @@
   .statement-section {
     padding: 40px;
   }
-  .statement-text {
-    font-size: 64px;
-  }
-}
-@media (max-width: 1023px) {
-  .statement-text {
-    font-size: 48px;
-  }
 }
 @media (max-width: 767px) {
   .statement-section {
@@ -156,13 +148,8 @@
     perspective: 800px;
   }
   .statement-text {
-    font-size: 32px;
-    text-align: left;
-  }
-}
-@media (max-width: 479px) {
-  .statement-text {
-    font-size: 24px;
+    font-size: clamp(26px, 6vw, 44px);
+    line-height: 1.12;
   }
 }
 @media (max-height: 500px) and (orientation: landscape) {
@@ -171,7 +158,7 @@
     padding: 24px 40px;
   }
   .statement-text {
-    font-size: 28px;
+    font-size: clamp(24px, 8vh, 40px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -188,7 +175,7 @@
 
 .statement-period { color: #0b2d26; }
 .dot-passage { position: relative; height: 200vh; background: #0b2d26; z-index: 5; }
-.dot-scene { position: sticky; top: 0; height: 100vh; background: #fff; }
+.dot-scene { position: sticky; top: 0; height: 100vh; background: #ffffff; }
 .dot-scene[data-arrived="true"] { overflow: clip; }
 .dot-scene-svg {
   position: absolute; inset: 0; z-index: 1;

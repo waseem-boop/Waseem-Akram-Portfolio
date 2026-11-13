@@ -16,10 +16,7 @@ export const serviceShowcase = {
       title: "Websites",
       description:
         "Fast, responsive websites and e-commerce experiences. From custom interfaces to product pages and checkout, built around your brand.",
-      image:
-        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393006/waseem-akram/services/web-sculpture.webp",
-      imageWidth: 1050,
-      imageHeight: 1530,
+      image: "/images/services/website-interface.svg",
       subject: "Web Development and E-commerce inquiry",
     },
     {
@@ -27,10 +24,7 @@ export const serviceShowcase = {
       title: "SaaS platforms",
       description:
         "Custom dashboards, connected systems and scalable software. Thoughtful full-stack development to take your product from MVP to launch.",
-      image:
-        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393006/waseem-akram/services/saas-sculpture.webp",
-      imageWidth: 691,
-      imageHeight: 713,
+      image: "/images/services/saas-dashboard.svg",
       subject: "SaaS Platforms inquiry",
     },
     {
@@ -38,10 +32,7 @@ export const serviceShowcase = {
       title: "Mobile apps",
       description:
         "Intuitive mobile interfaces and cross-platform apps. Clear user journeys and considered interactions, built for iOS and Android.",
-      image:
-        "https://res.cloudinary.com/eckkgw2a/image/upload/v1794393006/waseem-akram/services/app-sculpture.webp",
-      imageWidth: 678,
-      imageHeight: 666,
+      image: "/images/services/mobile-interface.svg",
       subject: "Mobile Apps inquiry",
     },
   ].map((item) => ({

@@ -54,9 +54,17 @@
 .tools-cta-button:hover { background: var(--color-accent); color: var(--color-white); }
 
 .testimonials-section { background: var(--color-ink); color: var(--color-paper); }
-.testimonial-header > p, .testimonials-notice { color: var(--color-sage); }
+.testimonial-header > p { color: var(--color-sage); }
 .testimonial-card { background: var(--color-white); color: var(--color-ink); }
 .testimonial-role { color: var(--color-base); }
+
+.work-header h2,
+.showcase-heading,
+.process-wall-heading h2,
+.stack-orbit-header h2,
+.testimonial-header h2 {
+  color: var(--color-paper);
+}
 
 .contact-cta { background: var(--color-surface); color: var(--color-paper); }
 .contact-cta-corner { color: var(--color-accent); }

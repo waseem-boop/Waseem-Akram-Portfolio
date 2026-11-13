@@ -2,8 +2,8 @@
   position: relative;
   height: 600vh;
   padding: 208px 0;
-  background: #f8f7f3;
-  color: #000;
+  background: #ffffff;
+  color: #000000;
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -58,7 +58,7 @@
   max-width: 520px;
   padding: 45px 20px 50px;
   border-radius: 20px;
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 0 18px #00000012;
   transition: background-color 0.5s ease;
 }
@@ -80,8 +80,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #000;
-  color: #fff;
+  background: #000000;
+  color: #ffffff;
   transition: opacity 0.5s ease;
 }
 .vision-card-image {
@@ -115,7 +115,7 @@
 }
 .vision-card p {
   margin: 0;
-  color: #4d4d4d;
+  color: #165039;
   transition: color 0.5s ease;
 }
 .vision-circle {
@@ -126,9 +126,9 @@
   width: 400px;
   height: 400px;
   margin: 0 auto;
-  border: 1px dashed #000;
+  border: 1px dashed #000000;
   border-radius: 50%;
-  background: #fff;
+  background: #ffffff;
 }
 .vision-ring {
   position: absolute;
@@ -139,12 +139,12 @@
 .vision-ring-inner {
   width: 712px;
   height: 712px;
-  border: 1px dashed #0006;
+  border: 1px dashed #00000066;
 }
 .vision-ring-outer {
   width: 920px;
   height: 920px;
-  border: 1px dashed #0003;
+  border: 1px dashed #00000033;
 }
 .vision-messages {
   position: relative;
@@ -163,18 +163,18 @@
   opacity: 0;
 }
 .vision-card:focus-visible {
-  outline: 2px solid #000;
+  outline: 2px solid #000000;
   outline-offset: 6px;
 }
 .vision-card:focus-visible,
 .vision-card:hover {
-  background: #000;
+  background: #000000;
 }
 .vision-card:focus-visible h3,
 .vision-card:focus-visible p,
 .vision-card:hover h3,
 .vision-card:hover p {
-  color: #fff;
+  color: #ffffff;
 }
 .vision-card:focus-visible .vision-card-number,
 .vision-card:hover .vision-card-number {

@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Frunchy Sage";
+  src: url("/fonts/frunchy-sage.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
   --color-paper: #daf1de;
@@ -8,7 +16,21 @@
   --color-white: #ffffff;
   --color-accent: #20836f;
   --page-gutter: 60px;
+  --font-frunchy-sage: "Frunchy Sage", Georgia, serif;
+  --font-be-vietnam-pro: "Be Vietnam Pro", Arial, sans-serif;
+  --home-be-vietnam-size: 18px;
+  --section-heading-size: 70px;
+  --card-heading-size: clamp(18px, 2.4vw, 24px);
+  --feature-label-size: clamp(24px, 3vw, 36px);
   --entrance-ease: cubic-bezier(0.68, 0, 0.16, 0.97);
+}
+
+@media (max-width: 991px) {
+  :root { --section-heading-size: 56px; }
+}
+
+@media (max-width: 767px) {
+  :root { --section-heading-size: clamp(32px, 8vw, 44px); }
 }
 
 * {
@@ -33,7 +55,7 @@ body::-webkit-scrollbar {
 body {
   background: var(--color-ink);
   color: var(--color-paper);
-  font-family: var(--font-inter-display), Arial, sans-serif;
+  font-family: var(--font-be-vietnam-pro);
   font-feature-settings:
     "blwf" on,
     "cv03" on,

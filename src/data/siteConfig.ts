@@ -24,12 +24,12 @@ export const siteConfig = {
     ],
   },
   navigation: [
-    { label: "About", href: "#about" },
+    { label: "About", href: "/#about" },
     {
       label: "Projects",
-      href: "#projects",
+      href: "/projects",
     },
-    { label: "Stack", href: "#stack" },
+    { label: "Stack", href: "/#stack" },
     { label: "GitHub", href: "https://github.com/waseemakram-dev" },
   ],
   inquiry: "Work inquiry",

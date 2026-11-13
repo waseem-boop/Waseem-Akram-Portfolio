@@ -3,14 +3,13 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { testimonials } from "@/data/testimonials";
-import { kreativeFont } from "@/styles/kreativeFont";
 import { useTestimonialStack } from "@/hooks/useKreativeSections";
 
 export default function Testimonials() {
   const ref = useRef<HTMLElement>(null);
   useTestimonialStack(ref);
   return (
-    <section className={`testimonials-section ${kreativeFont.className}`} id="testimonials" ref={ref} aria-labelledby="testimonials-heading">
+    <section className="testimonials-section" id="testimonials" ref={ref} aria-labelledby="testimonials-heading">
       <div className="testimonial-sticky">
         <div className="testimonial-scene">
           <header className="testimonial-header">
@@ -33,7 +32,6 @@ export default function Testimonials() {
               </figure>
             ))}
           </div>
-          <p className="testimonials-notice">{testimonials.notice}</p>
         </div>
       </div>
     </section>

@@ -20,6 +20,8 @@ import "@/styles/contact-cta.css";
 import "@/styles/footer.css";
 import "@/styles/brand-theme.css";
 import "@/styles/buttons.css";
+import "@/styles/projects-pages.css";
+import "@/styles/genstudio-projects.css";
 
 const interDisplay = localFont({
   src: [
@@ -46,38 +48,6 @@ const interDisplay = localFont({
   ],
   variable: "--font-inter-display",
   display: "swap",
-});
-
-const syne = localFont({
-  src: "../../public/fonts/syne-medium.woff2",
-  variable: "--font-statement",
-  display: "swap",
-  weight: "500",
-  preload: false,
-});
-
-const portfolioFont = localFont({
-  src: "../../public/fonts/aeonik-medium.woff2",
-  variable: "--font-portfolio",
-  display: "swap",
-  weight: "500",
-  preload: false,
-});
-
-const serviceDisplay = localFont({
-  src: "../../public/fonts/archivo-variable.woff2",
-  variable: "--font-service-display",
-  display: "swap",
-  weight: "100 900",
-  preload: false,
-});
-
-const serviceMono = localFont({
-  src: "../../public/fonts/geist-mono.woff2",
-  variable: "--font-service-mono",
-  display: "swap",
-  weight: "400",
-  preload: false,
 });
 
 const SITE_URL = "https://www.waseemakram.dev";
@@ -141,6 +111,7 @@ const jsonLd = {
         "https://waseemakram.online/",
         "https://www.behance.net/iamwaseemdev",
         "https://dribbble.com/waseemakramdev",
+        "https://www.instagram.com/iamwaseemdev/",
         "https://www.tiktok.com/@iamwaseemdev",
       ],
       knowsAbout: [
@@ -288,10 +259,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${interDisplay.variable} ${syne.variable} ${portfolioFont.variable} ${serviceDisplay.variable} ${serviceMono.variable}`}
+      className={interDisplay.variable}
       suppressHydrationWarning
     >
       <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        />
         <script
           id="gtm-init"
           dangerouslySetInnerHTML={{

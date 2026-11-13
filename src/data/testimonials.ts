@@ -2,7 +2,6 @@
 export const testimonials = {
   eyebrow: "What clients say",
   heading: "Testimonials",
-  notice: "Sample testimonials. Real client reviews coming soon.",
   items: [
     {
       id: "website",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +10,8 @@ import { afterHydrationTask } from "@/lib/motionScheduler";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let cleanup: (() => void) | undefined;
@@ -20,12 +23,16 @@ export default function SmoothScroll() {
       cleanup = undefined;
       if (motion.matches) return;
 
+      const isHomeLoop =
+        pathname === "/" && Boolean(document.querySelector("[data-loop-return]"));
+      const hero = isHomeLoop ? document.getElementById("hero") : null;
+
       const lenis = new Lenis({
         autoRaf: false,
         lerp: 0.08,
         smoothWheel: true,
         syncTouch: true,
-        infinite: Boolean(document.querySelector("[data-loop-return]")),
+        infinite: isHomeLoop,
         anchors: { offset: -24 },
       });
       const tick = (time: number) => lenis.raf(time * 1000);
@@ -37,9 +44,10 @@ export default function SmoothScroll() {
         const currentScroll = window.scrollY;
         // Announce only the actual end-to-start crossing. No scroll writes,
         // animation completion or refresh calls belong in this event.
-        if (previousScroll > lenis.limit - window.innerHeight &&
+        if (hero && previousScroll > lenis.limit - window.innerHeight &&
             currentScroll < window.innerHeight &&
             previousScroll - currentScroll > window.innerHeight * 2) {
+          hero.setAttribute("data-returned", "");
           window.dispatchEvent(new Event("portfolio:hero-return"));
         }
         previousScroll = currentScroll;
@@ -61,6 +69,7 @@ export default function SmoothScroll() {
       syncMenu();
 
       cleanup = () => {
+        hero?.removeAttribute("data-returned");
         observer.disconnect();
         ScrollTrigger.removeEventListener("refresh", resize);
         gsap.ticker.remove(tick);
@@ -84,7 +93,7 @@ export default function SmoothScroll() {
       motion.removeEventListener("change", scheduleSetup);
       cleanup?.();
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

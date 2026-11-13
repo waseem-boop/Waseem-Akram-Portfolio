@@ -57,6 +57,7 @@ export const portraitShader = /* glsl */ `
   precision highp float;
   uniform sampler2D u_portrait;
   uniform sampler2D u_background;
+  uniform bool u_backgroundOnly;
   uniform sampler2D u_trail;
   uniform vec2 u_resolution;
   uniform vec2 u_backgroundSize;
@@ -77,6 +78,7 @@ export const portraitShader = /* glsl */ `
     vec2 visibleArea = ratio / max(ratio.x, ratio.y);
     vec2 backgroundUV = flipped * visibleArea + (1.0 - visibleArea) * 0.5;
     vec4 background = texture(u_background, backgroundUV);
+    if (u_backgroundOnly) return vec4(background.rgb, 1.0);
     vec2 portraitUV = (flipped * u_resolution - u_portraitRect.xy) / u_portraitRect.zw;
     float inside = step(0.0, portraitUV.x) * step(portraitUV.x, 1.0)
       * step(0.0, portraitUV.y) * step(portraitUV.y, 1.0);
@@ -124,6 +126,6 @@ export const portraitShader = /* glsl */ `
     vec4 red = layeredPortrait(v_uv + offset * (1.0 - u_dispersion * 0.5));
     vec4 green = layeredPortrait(v_uv + offset);
     vec4 blue = layeredPortrait(v_uv + offset * (1.0 + u_dispersion * 0.5));
-    fragColor = vec4(red.r, green.g, blue.b, green.a);
+    fragColor = vec4(red.r, green.g, blue.b, 1.0);
   }
 `;

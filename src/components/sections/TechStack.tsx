@@ -87,8 +87,8 @@ export default function TechStack() {
   return (
     <section className="stack-orbit-section" id="stack" ref={section} aria-labelledby="tech-stack-heading">
       <header className="stack-orbit-header">
-        <p className="stack-orbit-eyebrow">05 — THE TOOLKIT</p>
-        <h2 id="tech-stack-heading">MY EVERYDAY<br />STACK.</h2>
+        <p className="stack-orbit-eyebrow">THE TOOLKIT</p>
+        <h2 id="tech-stack-heading">MY EVERYDAY STACK.</h2>
         <p className="stack-orbit-intro">The tools behind the websites, apps and platforms I build.</p>
       </header>
       <div className="stack-orbit-stage">
@@ -109,7 +109,6 @@ export default function TechStack() {
           })}
         </ul>
       </div>
-      <div className="stack-orbit-bottom"><span>IDEA → DESIGN → DEVELOPMENT → LAUNCH</span><a href={techStackData.ctaHref}>Let’s build something <span aria-hidden="true">↗</span></a></div>
     </section>
   );
 }

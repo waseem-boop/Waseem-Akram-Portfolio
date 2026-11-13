@@ -1,8 +1,8 @@
 .services-showcase {
   height: 800vh;
-  background: #000;
-  color: #fff;
-  font-family: var(--font-inter-display), Arial, sans-serif;
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-be-vietnam-pro);
   letter-spacing: 0;
 }
 .showcase-container {
@@ -17,9 +17,9 @@
 }
 .showcase-heading {
   margin: 0;
-  font-size: 200px;
-  font-weight: 600;
-  line-height: 1;
+  font-size: var(--section-heading-size);
+  font-weight: 500;
+  line-height: 1.14286;
   text-align: center;
 }
 .showcase-sticky {
@@ -41,7 +41,7 @@
 .showcase-introduction {
   max-width: 1096px;
   margin: 0;
-  color: #848484;
+  color: #c8e2d6;
   font-size: 50px;
   font-weight: 600;
   line-height: 1.1;
@@ -65,7 +65,7 @@
   padding: 40px 20px;
   border: 1px solid rgb(255 255 255 / 50%);
   border-radius: 22px;
-  background: rgb(197 188 183 / 15%);
+  background: rgb(200 226 214 / 15%);
   backdrop-filter: blur(60px);
   -webkit-backdrop-filter: blur(60px);
 }
@@ -83,7 +83,7 @@
   width: 130px;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 38px rgb(230 63 32 / 16%));
+  filter: drop-shadow(0 0 38px rgb(32 131 111 / 16%));
 }
 .showcase-copy {
   flex: 1;
@@ -107,7 +107,7 @@
   line-height: 1.45;
 }
 .showcase-card:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid #ffffff;
   outline-offset: 6px;
 }
 .showcase-marquee {
@@ -116,14 +116,14 @@
   width: 100%;
   padding: 30px 0;
   overflow: hidden;
-  background: #000;
+  background: #000000;
 }
 .showcase-marquee::after {
   position: absolute;
   inset: 0;
   content: "";
   pointer-events: none;
-  background: linear-gradient(90deg, #1d1d20 0%, #1d1d2000 35%, #1d1d2000 65%, #1d1d20 100%);
+  background: linear-gradient(90deg, #051f20 0%, #051f2000 35%, #051f2000 65%, #051f20 100%);
 }
 .showcase-marquee-track {
   display: flex;
@@ -138,6 +138,7 @@
   padding-right: 20px;
 }
 .showcase-marquee-train > span {
+  font-family: var(--font-frunchy-sage);
   display: flex;
   align-items: center;
   gap: 20px;
@@ -151,7 +152,6 @@
 }
 @media (min-width: 1280px) {
   .showcase-title-wrap { padding-bottom: 120px; }
-  .showcase-heading { font-size: 250px; }
   .showcase-sticky { padding-top: 0; }
   .showcase-track { gap: 90px; }
   .showcase-card { gap: 65px; width: 744px; padding-right: 40px; padding-left: 40px; }
@@ -174,7 +174,6 @@
 @media (max-width: 991px) {
   .services-showcase { height: auto; }
   .showcase-title-wrap { padding-top: 50px; padding-bottom: 30px; }
-  .showcase-heading { font-size: 100px; }
   .showcase-sticky { position: static; height: auto; gap: 70px; padding-top: 0; }
   .showcase-intro-wrap { flex: none; }
   .showcase-introduction { max-width: 800px; margin: 0 auto; font-size: 36px; text-align: center; }
@@ -193,7 +192,6 @@
   .showcase-copy h3 { font-size: 32px; }
 }
 @media (max-width: 479px) {
-  .showcase-heading { font-size: 70px; }
   .showcase-introduction { font-size: 26px; }
   .showcase-card { padding: 36px 24px; }
   .showcase-description p { font-size: 16px; }

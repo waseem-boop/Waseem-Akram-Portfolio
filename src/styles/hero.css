@@ -4,7 +4,12 @@
   width: 100%;
   height: 100vh;
   overflow: clip;
-  background: #002623;
+  background: #051f20;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero-stage { height: 128vh; }
+  .home-hero-stage > .hero { position: sticky; top: 0; }
 }
 .hero-background {
   position: absolute;
@@ -68,6 +73,7 @@
   overflow: clip;
 }
 .hero-descriptor {
+  font-family: var(--font-frunchy-sage);
   font-size: 18px;
   font-weight: 600;
   line-height: 1.12;
@@ -92,6 +98,7 @@
   overflow: clip;
 }
 .hero-first-name {
+  font-family: var(--font-inter-display), Arial, sans-serif;
   position: relative;
   z-index: 2;
   mix-blend-mode: difference;
@@ -121,6 +128,7 @@
   animation: text-enter-up 1s var(--entrance-ease) 150ms both;
 }
 .hero-last-name {
+  font-family: var(--font-inter-display), Arial, sans-serif;
   position: relative;
   z-index: 2;
   mix-blend-mode: difference;
@@ -139,6 +147,11 @@
   overflow: visible;
 }
 .hero-word text { font-family: inherit; font-weight: inherit; }
+
+.hero[data-returned] :is(.hero-background, .hero-descriptor, .hero-first-name, .hero-last-name, .hero-role),
+[data-loop-hero] :is(.hero-background, .hero-descriptor, .hero-first-name, .hero-last-name, .hero-role) {
+  animation: none;
+}
 
 @keyframes portrait-enter {
   from {

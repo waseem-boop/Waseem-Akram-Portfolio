@@ -24,6 +24,7 @@ export function createRipplePortrait(
   eventSurface: HTMLElement,
   onReady: (ready: boolean) => void,
   initialEvent?: { type: "move" | "down"; clientX: number; clientY: number },
+  backgroundOnly = false,
 ): (() => void) | undefined {
   const context = document
     .createElement("canvas")
@@ -86,15 +87,15 @@ export function createRipplePortrait(
   });
   const loader = new TextureLoader();
   loader.setCrossOrigin("anonymous");
-  const image = loader.load(
+  const image = backgroundOnly ? null : loader.load(
     siteConfig.portrait,
-    () => {
+    (texture) => {
       if (disposed) {
-        image.dispose();
+        texture.dispose();
         return;
       }
-      image.colorSpace = NoColorSpace;
-      image.flipY = false;
+      texture.colorSpace = NoColorSpace;
+      texture.flipY = false;
       portraitLoaded = true;
       loaded = portraitLoaded && backgroundLoaded;
       if (loaded) {
@@ -112,14 +113,14 @@ export function createRipplePortrait(
   );
   const background = loader.load(
     siteConfig.heroBackground,
-    () => {
+    (texture) => {
       if (disposed) {
-        background.dispose();
+        texture.dispose();
         return;
       }
-      background.colorSpace = NoColorSpace;
-      background.flipY = false;
-      backgroundSize.set(background.image.width, background.image.height);
+      texture.colorSpace = NoColorSpace;
+      texture.flipY = false;
+      backgroundSize.set(texture.image.width, texture.image.height);
       backgroundLoaded = true;
       loaded = portraitLoaded && backgroundLoaded;
       if (loaded) {
@@ -143,6 +144,7 @@ export function createRipplePortrait(
       ...shared,
       u_portrait: { value: image },
       u_background: { value: background },
+      u_backgroundOnly: { value: backgroundOnly },
       u_trail: { value: read.texture },
       u_backgroundSize: { value: backgroundSize },
       u_portraitRect: { value: portraitRect },
@@ -157,7 +159,7 @@ export function createRipplePortrait(
   scene.add(quad);
   let disposed = false;
   let loaded = false;
-  let portraitLoaded = false;
+  let portraitLoaded = backgroundOnly;
   let backgroundLoaded = false;
   let visible = true;
   let frame = 0;
@@ -204,6 +206,10 @@ export function createRipplePortrait(
       onReady(true);
     }
     if (now - lastInteraction < 4500) frame = requestAnimationFrame(render);
+    else if (backgroundOnly) {
+      ready = false;
+      onReady(false);
+    }
   }
 
   function wake(animate = true) {
@@ -326,7 +332,7 @@ export function createRipplePortrait(
     window.removeEventListener("scroll", scroll);
     document.removeEventListener("visibilitychange", visibility);
     canvas.removeEventListener("webglcontextlost", lost);
-    image.dispose();
+    image?.dispose();
     background.dispose();
     trail.dispose();
     portrait.dispose();
